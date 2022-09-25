@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
+/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/09/11 14:01:52 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:25:33 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,21 @@
 # define CUB3D_H
 
 # ifdef LINUX
-#  include "../../so_long/mlx_linux/mlx.h"
+#  include "../mlx_linux/mlx.h"
+
+#  define ESC 65307
+#  define UP 119
+#  define DOWN 115
+#  define LEFT 97
+#  define RIGHT 100
 # else
 #  include <mlx.h>
+
+#  define ESC 53
+#  define UP_A 126
+#  define DOWN_A 125
+#  define LEFT_A 123
+#  define RIGHT_A 124
 # endif
 
 # include "../libft/libft.h"
@@ -27,10 +39,21 @@
 
 # define WH 800
 
+// might change later
+typedef struct s_map
+{
+	char			*no;
+	char			*we;
+	char			*ea;
+	char			*so;
+	char			*map;
+	struct s_map	*next;	
+}	t_map;
+
 typedef struct s_window
 {
-    void	*mlx;
-	void	*mlx_win;
+	void	*mlx;
+	void	*win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -41,8 +64,16 @@ typedef struct s_window
 /* my pixel_put, from 42docs */
 void	ft_put_pixel(t_win *img, int x, int y, int color);
 /* atoi for double: convert char 3.14 to double 3.14, _f like float */
-double		ft_atoi_f(const char *str);
+double	ft_atoi_f(const char *str);
 /* check str before atoi_f */
-int	        ft_vld_f(char *str);
+int		ft_vld_f(char *str);
+
+int		key_hook(int keycode, t_win *win);
+int		destroy_hook(t_win *win);
+int		mouse_hook(int code, int x, int y, t_win *win);
+void	parse_map(int argc, char **argv, t_win *img);
+
+/* perror if syscall is true, putendl_fd if false and exit */
+void	error(char *msg, int syscall);
 
 #endif

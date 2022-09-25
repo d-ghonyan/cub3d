@@ -3,42 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
+/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/09/11 13:43:42 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/09/25 17:25:21 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d.h"
+
+void	mlx_hooks(t_win *win)
+{
+	mlx_key_hook(win->win, &key_hook, win);
+	mlx_mouse_hook(win->win, &mouse_hook, win);
+	mlx_hook(win->win, 17, 0, &destroy_hook, win);
+}
 
 void	ft_init(t_win *s)
 {
-	(*s).mlx = mlx_init();
-	if (NULL == (*s).mlx)
-		ft_putendl_fd("MLX Error", 2);
-	(*s).mlx_win = mlx_new_window((*s).mlx, WH, WH, "CUB3D");
-	if (NULL == (*s).mlx_win)
-	{
-		free(s->mlx_win);
-		ft_putendl_fd("Window Error", 2);
-	}
-	(*s).img = mlx_new_image((*s).mlx, WH, WH);
-	if (!(*s).img)
-		ft_putendl_fd("IMG Error", 2);
-	(*s).addr = mlx_get_data_addr((*s).img, \
-			&(*s).bits_per_pixel, &(*s).line_length, \
-			&(*s).endian);
-	if (!(*s).img)
-		ft_putendl_fd("IMG Fill(bpp etc) Error", 2);
+	s->mlx = mlx_init();
+	if (NULL == s->mlx)
+		error("MLX Error", 0);
+	s->win = mlx_new_window(s->mlx, WH, WH, "CUB3D");
+	if (NULL == s->win)
+		error("Window Error", 0);
+	s->img = mlx_new_image(s->mlx, WH, WH);
+	if (!s->img)
+		error("IMG Error", 0);
+	s->addr = mlx_get_data_addr(s->img, \
+			&s->bits_per_pixel, &s->line_length, \
+			&s->endian);
+	if (!s->addr)
+		error("IMG Fill(bpp etc) Error", 0);
+	mlx_hooks(s);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_win	img;
 
+	parse_map(argc, argv, &img);
 	ft_init(&img);
 	mlx_loop(img.mlx);
-	mlx_destroy_window(img.mlx, img.mlx_win);
-	free(img.mlx);
 }
