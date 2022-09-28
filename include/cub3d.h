@@ -39,23 +39,21 @@
 
 # define WH 800
 
-// might change later
-typedef struct s_map
-{
-	char			*no;
-	char			*we;
-	char			*ea;
-	char			*so;
-	char			*map;
-	struct s_map	*next;	
-}	t_map;
-
 typedef struct s_window
 {
+	t_list	*map;
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	*addr;
+	void	*no_img;
+	void	*we_img;
+	void	*ea_img;
+	void	*so_img;
+	int		no_fd;
+	int		we_fd;
+	int		ea_fd;
+	int		so_fd;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
