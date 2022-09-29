@@ -26,6 +26,8 @@ void	ft_splfree(char **split)
 
 	k = 0;
 	i = 0;
+	if (!split)
+		return ;
 	while (split[i])
 		i++;
 	while (k < i)

@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha <mtiesha@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 12:54:23 by mtiesha           #+#    #+#             */
-/*   Updated: 2021/11/10 13:39:25 by mtiesha          ###   ########.fr       */
+/*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
+/*   Updated: 2022/09/25 17:34:21 by dghonyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_lstsize_b(t_list *lst)
+int	is_allowed(char *s)
 {
-	size_t	i;
-
-	i = 0;
-	while (lst)
-	{
-		lst = lst -> next;
-		i++;
-	}
-	return (i);
+	return (!ft_strcmp(s, "NO") || !ft_strcmp(s, "WE")
+		|| !ft_strcmp(s, "EA") || !ft_strcmp(s, "SO")
+		|| !ft_strcmp(s, "F") || !ft_strcmp(s, "C"));
 }

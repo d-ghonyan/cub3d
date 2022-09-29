@@ -73,5 +73,8 @@ void	parse_map(int argc, char **argv, t_win *img);
 
 /* perror if syscall is true, putendl_fd if false and exit */
 void	error(char *msg, int syscall);
+int		is_allowed(char *s);
+int		have_newlines(t_list *map);
+int		wrong_map(t_list *map);
 
 #endif
