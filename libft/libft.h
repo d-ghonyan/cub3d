@@ -12,8 +12,11 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 42
 
 /* get_next_line */
 int		ft_gnl_sh(char **line, int memory, int fd);
@@ -111,5 +114,7 @@ int		ft_lstsize(t_list *lst);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstadd_front(t_list **lst, t_list *new);
+char	*ft_charadd_end(char *s, char c);
+char	*ft_strjoinfree_v2(char *s1, char *s2);
 
 #endif

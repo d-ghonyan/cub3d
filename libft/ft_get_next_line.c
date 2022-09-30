@@ -17,30 +17,6 @@
 	fd - read from
 */
 
-/* add char c to the end of s */
-static char	*ft_strjoin_for_read(char *s, char c)
-{
-	size_t	i;
-	char	*res;
-
-	i = 0;
-	res = (char *)malloc(sizeof (*res) * (ft_strlen(s) + 2));
-	if (!res)
-	{
-		free(s);
-		return (NULL);
-	}
-	while (i < ft_strlen(s))
-	{
-		res[i] = s[i];
-		i++;
-	}
-	free(s);
-	res[i] = c;
-	res[i + 1] = '\0';
-	return (res);
-}
-
 char	*get_next_line(int fd)
 {
 	char	*s;
@@ -60,7 +36,7 @@ char	*get_next_line(int fd)
 		}
 		if (rd == 0)
 			return (s);
-		s = ft_strjoin_for_read(s, c);
+		s = ft_charadd_end(s, c);
 	}
 	return (s);
 }

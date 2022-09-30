@@ -25,6 +25,29 @@ char	*ft_chardel(char **str, int index)
 	return (ret);
 }
 
+char	*ft_charadd_end(char *s, char c)
+{
+	size_t	i;
+	char	*res;
+
+	i = 0;
+	res = malloc(sizeof (*res) * (ft_strlen(s) + 2));
+	if (!res)
+	{
+		free(s);
+		return (NULL);
+	}
+	while (i < ft_strlen(s))
+	{
+		res[i] = s[i];
+		i++;
+	}
+	free(s);
+	res[i] = c;
+	res[i + 1] = '\0';
+	return (res);
+}
+
 char	*ft_charadd(char **str, int index, char c)
 {
 	char	*ret;

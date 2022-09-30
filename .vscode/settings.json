@@ -1,3 +1,6 @@
 {
-	"workbench.panel.defaultLocation": "right"
+	"workbench.panel.defaultLocation": "right",
+	"files.associations": {
+		"cub3d.h": "c"
+	}
 }

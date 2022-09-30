@@ -22,7 +22,7 @@
 #  define LEFT 97
 #  define RIGHT 100
 # else
-#  include <mlx.h>
+//#  include <mlx.h>
 
 #  define ESC 53
 #  define UP_A 126
@@ -50,6 +50,12 @@ typedef struct s_window
 	void	*we_img;
 	void	*ea_img;
 	void	*so_img;
+	char	*no_file;
+	char	*we_file;
+	char	*ea_file;
+	char	*so_file;
+	char	*f_color;
+	char	*c_color;
 	int		no_fd;
 	int		we_fd;
 	int		ea_fd;
@@ -73,8 +79,10 @@ void	parse_map(int argc, char **argv, t_win *img);
 
 /* perror if syscall is true, putendl_fd if false and exit */
 void	error(char *msg, int syscall);
-int		is_allowed(char *s);
 int		have_newlines(t_list *map);
 int		wrong_map(t_list *map);
+int		wrong_extension(char *s, char *extension);
+char	**get_map(int fd);
+int		get_options(char ***map, t_win *win);
 
 #endif

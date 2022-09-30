@@ -32,7 +32,7 @@ int	valid_map_char(char c)
 		|| c == 'W' || c == 'E' || c == 'S');
 }
 
-int	is_surrounded(char *s)
+int	whatever(char *s)
 {
 	int	i;
 
@@ -56,19 +56,61 @@ int	is_surrounded(char *s)
 	return (0);
 }
 
-int	valid_chars(t_list *map)
+int	check_walls_end(char *line)
 {
-	int		i;
-	char	*line;
+	int	i;
 
-	while (map)
+	i = 0;
+	while (line[i] && line[i] != '\n')
 	{
-		i = 0;
-		line = map->content;
 		while (line[i] == ' ')
 			i++;
-		if (line[i] != '1')
-			return (0);
+		while (line[i] != ' ')
+		{
+			if (line[i] != '1')
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
+
+int	check_walls_mid(char *line)
+{
+	int	i;
+	int	iter;
+
+	i = 0;
+	iter = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		while (line[i] == ' ')
+			i++;
+		while (line[i] != ' ')
+		{
+			if (line[i] != '1')
+				return (1);
+			i++;
+		}
+		iter++;
+	}
+	return (0);
+}
+
+int	is_surrounded(t_list *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map)
+	{
+		j = 0;
+		if (i == 0 || !map->next)
+			check_walls_end(map->content);
+		else
+		{
+		}
 	}
 }
 
@@ -79,7 +121,7 @@ int	wrong_map(t_list *map)
 	temp = map;
 	while (temp)
 	{
-		if (is_surrounded(temp->content))
+		if (whatever(temp->content))
 			return (1);
 		temp = temp->next;
 	}

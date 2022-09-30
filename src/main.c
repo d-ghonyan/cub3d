@@ -12,30 +12,49 @@
 
 #include "cub3d.h"
 
-void	mlx_hooks(t_win *win)
-{
-	mlx_key_hook(win->win, &key_hook, win);
-	mlx_mouse_hook(win->win, &mouse_hook, win);
-	mlx_hook(win->win, 17, 0, &destroy_hook, win);
-}
+//void	mlx_hooks(t_win *win)
+//{
+//	mlx_key_hook(win->win, &key_hook, win);
+//	mlx_mouse_hook(win->win, &mouse_hook, win);
+//	mlx_hook(win->win, 17, 0, &destroy_hook, win);
+//}
 
-void	ft_init(t_win *s)
+//void	ft_init(t_win *s)
+//{
+//	s->mlx = mlx_init();
+//	if (NULL == s->mlx)
+//		error("MLX Error", 0);
+//	s->win = mlx_new_window(s->mlx, WH, WH, "CUB3D");
+//	if (NULL == s->win)
+//		error("Window Error", 0);
+//	s->img = mlx_new_image(s->mlx, WH, WH);
+//	if (!s->img)
+//		error("IMG Error", 0);
+//	s->addr = mlx_get_data_addr(s->img,
+//			&s->bits_per_pixel, &s->line_length,
+//			&s->endian);
+//	if (!s->addr)
+//		error("IMG Fill(bpp etc) Error", 0);
+//	mlx_hooks(s);
+//}
+
+void	init_win(t_win *win)
 {
-	s->mlx = mlx_init();
-	if (NULL == s->mlx)
-		error("MLX Error", 0);
-	s->win = mlx_new_window(s->mlx, WH, WH, "CUB3D");
-	if (NULL == s->win)
-		error("Window Error", 0);
-	s->img = mlx_new_image(s->mlx, WH, WH);
-	if (!s->img)
-		error("IMG Error", 0);
-	s->addr = mlx_get_data_addr(s->img, \
-			&s->bits_per_pixel, &s->line_length, \
-			&s->endian);
-	if (!s->addr)
-		error("IMG Fill(bpp etc) Error", 0);
-	mlx_hooks(s);
+	win->map = NULL;
+	win->mlx = NULL;
+	win->win = NULL;
+	win->img = NULL;
+	win->addr = NULL;
+	win->no_img = NULL;
+	win->we_img = NULL;
+	win->ea_img = NULL;
+	win->so_img = NULL;
+	win->no_file = NULL;
+	win->we_file = NULL;
+	win->ea_file = NULL;
+	win->so_file = NULL;
+	win->f_color = NULL;
+	win->c_color = NULL;
 }
 
 int	main(int argc, char **argv)
