@@ -20,3 +20,11 @@ void	error(char *msg, int syscall)
 		ft_putendl_fd(msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
+
+void	file_error(char *s)
+{
+	ft_putstr_fd("error: `", STDERR_FILENO);
+	ft_putstr_fd(s, STDERR_FILENO);
+	ft_putstr_fd("': ", STDERR_FILENO);
+	error("", 1);
+}

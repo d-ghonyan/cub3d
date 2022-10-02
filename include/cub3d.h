@@ -22,7 +22,7 @@
 #  define LEFT 97
 #  define RIGHT 100
 # else
-//#  include <mlx.h>
+#  include <mlx.h>
 
 #  define ESC 53
 #  define UP_A 126
@@ -84,5 +84,6 @@ int		wrong_map(t_list *map);
 int		wrong_extension(char *s, char *extension);
 char	**get_map(int fd);
 int		get_options(char ***map, t_win *win);
+void	file_error(char *s);
 
 #endif

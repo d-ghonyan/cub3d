@@ -42,21 +42,23 @@ void	store_textures(t_win *win, char **line)
 		win->no_file = ft_strdup(line[1]);
 		win->no_fd = open(line[1], O_RDONLY);
 		if (!win->no_file || win->no_fd < 0)
-			error("error 1", 1);
+		{
+			file_error(line[1]);
+		}
 	}
 	if (!ft_strcmp(line[0], "EA"))
 	{
 		win->ea_file = ft_strdup(line[1]);
 		win->no_fd = open(line[1], O_RDONLY);
 		if (!win->ea_file || win->ea_fd < 0)
-			error("error 2", 1);
+			file_error(line[1]);
 	}
 	if (!ft_strcmp(line[0], "WE"))
 	{
 		win->we_file = ft_strdup(line[1]);
 		win->no_fd = open(line[1], O_RDONLY);
 		if (!win->we_file || win->we_fd < 0)
-			error("error 3", 1);
+			file_error(line[1]);
 	}
 }
 
@@ -68,18 +70,18 @@ void	store_check(char **line, t_win *win)
 		win->so_file = ft_strdup(line[1]);
 		win->no_fd = open(line[1], O_RDONLY);
 		if (!win->so_file || win->so_fd < 0)
-			error("error 4", 1);
+			file_error(line[1]);
 	}
 	if (!ft_strcmp(line[0], "F"))
 	{
 		win->f_color = ft_strdup(line[1]);
 		if (!win->f_color)
-			error("error 5", 1);
+			file_error(line[1]);
 	}
 	if (!ft_strcmp(line[0], "C"))
 	{
 		win->c_color = ft_strdup(line[1]);
 		if (!win->c_color)
-			error("error 6", 1);
+			file_error(line[1]);
 	}
 }
