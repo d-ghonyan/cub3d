@@ -13,6 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -116,5 +117,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstadd_front(t_list **lst, t_list *new);
 char	*ft_charadd_end(char *s, char c);
 char	*ft_strjoinfree_v2(char *s1, char *s2);
+char	**ft_split_str(char const *s, char *c);
 
 #endif

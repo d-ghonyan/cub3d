@@ -30,7 +30,7 @@ int	space_or_nl(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] != ' ' && s[i] != '\n')
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 			return (0);
 		i++;
 	}
@@ -41,9 +41,7 @@ void	process_line(char **line)
 {
 	if (!line)
 		error("malloc", 1);
-	if (line[1] && line[1][ft_strlen(line[1]) - 1] == '\n')
-		line[1][ft_strlen(line[1]) - 1] = '\0';
-	if (!is_allowed(line[0]) || !line[1] || !line[1][0])
+	if (!is_allowed(line[0]) || ft_spllen(line) != 2)
 		error("Wrong options", 0);
 }
 
@@ -78,7 +76,7 @@ int	get_options(char ***map, t_win *win)
 	init_check(&check);
 	while (**map && i != 6)
 	{
-		line = ft_split(**map, ' ');
+		line = ft_split_str(**map, " \t\n");
 		process_line(line);
 		if (i && is_in_check(line[0], check))
 			error("Duplicates", 0);

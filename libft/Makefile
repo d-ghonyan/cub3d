@@ -1,10 +1,13 @@
 NAME = libft.a
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -c
 ARCHIVE = ar -crs
 SRCS = $(wildcard *.c)
 	
 OBJS = $(SRCS:.c=.o)
+
+%.c:
+	$(CC) $(CFLAGS) $(SRCS)
 
 all: $(NAME)
 
