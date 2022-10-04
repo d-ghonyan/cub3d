@@ -26,6 +26,8 @@ void	parse_map(int argc, char **argv, t_win *win)
 	map = get_map(fd);
 	if (get_options(&map, win) || !map)
 		error("Missing options", 0);
+	if (!validate_map(map))
+		printf("HELLO\n");
 	while (*map)
 		printf("%s", *(map++));
 	close(fd);

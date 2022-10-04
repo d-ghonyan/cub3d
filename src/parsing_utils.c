@@ -12,3 +12,16 @@
 
 #include "cub3d.h"
 
+int	space_or_nl(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}

@@ -79,11 +79,12 @@ void	parse_map(int argc, char **argv, t_win *img);
 
 /* perror if syscall is true, putendl_fd if false and exit */
 void	error(char *msg, int syscall);
-int		have_newlines(t_list *map);
 int		wrong_map(t_list *map);
 int		wrong_extension(char *s, char *extension);
 char	**get_map(int fd);
 int		get_options(char ***map, t_win *win);
 void	file_error(char *s);
+int		validate_map(char **map);
+int		space_or_nl(char *s);
 
 #endif
