@@ -86,5 +86,6 @@ int		get_options(char ***map, t_win *win);
 void	file_error(char *s);
 int		validate_map(char **map);
 int		space_or_nl(char *s);
+int		valid_map_char(char c, int check_surrounded);
 
 #endif

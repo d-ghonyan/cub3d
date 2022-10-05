@@ -14,16 +14,27 @@
 
 #include "cub3d.h"
 
-int	valid_map_char(char c)
+int	check_characters(char **map, int len)
 {
-	return (c == '\n' || c == '1' || c == '0' || c == 'N'
-		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' || c == '\t');
-}
+	int	i;
+	int	j;
+	int	player;
 
-int	w_or_p(char c)
-{
-	return (c == '1' || c == 'N' || c == 'W'
-		|| c == 'E' || c == 'S' || c == '0');
+	i = -1;
+	player = 0;
+	while (++i < len)
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'W' || map[i][j] == 'E'
+				|| map[i][j] == 'N' || map[i][j] == 'S')
+				player++;
+			if (!valid_map_char(map[i][j], 0))
+				return (0);
+		}
+	}
+	return (player == 1);
 }
 
 int	have_newlines(char **map)
@@ -73,9 +84,9 @@ int	middle(char *s, char *s1, char *s2)
 			i++;
 		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
-			if ((s[i] == '0')
-				&& (!w_or_p(s1[i]) || !w_or_p(s2[i])
-				|| !w_or_p(s[i - 1]) || !w_or_p(s[i + 1])))
+			if ((s[i] == '0') && (!valid_map_char(s1[i], 1)
+				|| !valid_map_char(s2[i], 1) || !valid_map_char(s[i - 1], 1)
+				|| !valid_map_char(s[i + 1], 1)))
 					return (0);
 			i++;
 		}
@@ -93,6 +104,8 @@ int	validate_map(char **map)
 	len = have_newlines(map);
 	if (len < 0)
 		return (0);
+	if (!check_characters(map, len))
+		error("Something's wrong with characters...", 0);	
 	while (++i < len)
 	{
 		j = -1;
@@ -101,7 +114,7 @@ int	validate_map(char **map)
 		else if (i > 0 && i < len - 1 && !middle(map[i], map[i - 1], map[i + 1]))
 			error("Map not surrunded by walls", 0);
 	}
-	return (1);
+	return (0);
 }
 // if (!walls(map[i]))
 // 	return (0);

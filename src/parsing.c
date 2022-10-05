@@ -12,6 +12,16 @@
 
 #include "cub3d.h"
 
+
+int	valid_map_char(char c, int check_surrounded)
+{
+	if (check_surrounded)
+		return (c == '1' || c == 'N' || c == 'W'
+			|| c == 'E' || c == 'S' || c == '0');
+	return (c == '\n' || c == '1' || c == '0' || c == 'N'
+		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' || c == '\t');
+}
+
 void	parse_map(int argc, char **argv, t_win *win)
 {
 	int		fd;
