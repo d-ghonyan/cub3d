@@ -23,20 +23,6 @@ int	is_allowed(char *s)
 		|| !ft_strcmp(s, "F") || !ft_strcmp(s, "C"));
 }
 
-int	space_or_nl(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 void	process_line(char **line)
 {
 	if (!line)

@@ -14,116 +14,94 @@
 
 #include "cub3d.h"
 
-int	have_newlines(t_list *map)
-{
-	t_list	*temp;
-
-	temp = map;
-	while (temp && ft_strcmp(temp->content, "\n"))
-		temp = temp->next;
-	while (temp && !ft_strcmp(temp->content, "\n"))
-		temp = temp->next;
-	return (temp != NULL);
-}
-
 int	valid_map_char(char c)
 {
 	return (c == '\n' || c == '1' || c == '0' || c == 'N'
-		|| c == 'W' || c == 'E' || c == 'S');
+		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' || c == '\t');
 }
 
-int	whatever(char *s)
+int	w_or_p(char c)
+{
+	return (c == '1' || c == 'N' || c == 'W'
+		|| c == 'E' || c == 'S' || c == '0');
+}
+
+int	have_newlines(char **map)
+{
+	int	i;
+	int	nl_index;
+
+	i = 0;
+	nl_index = 0;
+	while (map[i] && !space_or_nl(map[i]))
+		i++;
+	nl_index = i;
+	while (map[nl_index] && space_or_nl(map[nl_index]))
+		nl_index++;
+	if (!map[nl_index])
+		return (i);
+	return (-1);
+}
+
+int	first_last(char *s)
 {
 	int	i;
 
-	i = 0;
-	while (s[i] && s[i] == ' ')
-		i++;
-	if (!s[i])
-		return (1);
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == ' ')
+		while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
 			i++;
-		while (s[i] && s[i] != ' ')
+		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
-			if (!valid_map_char(s[i]))
-				return (1);
+			if (s[i] != '1')
+				return (0);
 			i++;
 		}
 	}
-	return (0);
+	return (1);
 }
 
-int	check_walls_end(char *line)
+int	middle(char *s, char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] && line[i] != '\n')
+	while (s[i])
 	{
-		while (line[i] == ' ')
+		while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
 			i++;
-		while (line[i] != ' ')
+		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
-			if (line[i] != '1')
-				return (1);
+			if ((s[i] == '0')
+				&& (!w_or_p(s1[i]) || !w_or_p(s2[i])
+				|| !w_or_p(s[i - 1]) || !w_or_p(s[i + 1])))
+					return (0);
 			i++;
 		}
 	}
-	return (0);
+	return (1);
 }
 
-int	check_walls_mid(char *line)
-{
-	int	i;
-	int	iter;
-
-	i = 0;
-	iter = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		while (line[i] == ' ')
-			i++;
-		while (line[i] != ' ')
-		{
-			if (line[i] != '1')
-				return (1);
-			i++;
-		}
-		iter++;
-	}
-	return (0);
-}
-
-int	is_surrounded(t_list *map)
+int	validate_map(char **map)
 {
 	int	i;
 	int	j;
+	int	len;
 
-	i = 0;
-	while (map)
+	i = -1;
+	len = have_newlines(map);
+	if (len < 0)
+		return (0);
+	while (++i < len)
 	{
-		j = 0;
-		if (i == 0 || !map->next)
-			check_walls_end(map->content);
-		else
-		{
-		}
+		j = -1;
+		if ((i == 0 || i == len - 1) && !first_last(map[i]))
+			error("Map not surrunded by walls", 0);
+		else if (i > 0 && i < len - 1 && !middle(map[i], map[i - 1], map[i + 1]))
+			error("Map not surrunded by walls", 0);
 	}
+	return (1);
 }
-
-int	wrong_map(t_list *map)
-{
-	t_list	*temp;
-
-	temp = map;
-	while (temp)
-	{
-		if (whatever(temp->content))
-			return (1);
-		temp = temp->next;
-	}
-	return (have_newlines(map));
-}
+// if (!walls(map[i]))
+// 	return (0);
