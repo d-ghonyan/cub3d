@@ -87,5 +87,7 @@ void	file_error(char *s);
 int		validate_map(char **map);
 int		space_or_nl(char *s);
 int		valid_map_char(char c, int check_surrounded);
+int		ft_strlen_map(char *s);
+char	**convert_tabs(char **map, char **saved);
 
 #endif

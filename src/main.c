@@ -65,6 +65,7 @@ int	main(int argc, char **argv)
 {
 	t_win	img;
 
+	init_win(&img);
 	parse_map(argc, argv, &img);
 }
 	// ft_init(&img);

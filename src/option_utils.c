@@ -49,14 +49,14 @@ void	store_textures(t_win *win, char **line)
 	if (!ft_strcmp(line[0], "EA"))
 	{
 		win->ea_file = ft_strdup(line[1]);
-		win->no_fd = open(line[1], O_RDONLY);
+		win->ea_fd = open(line[1], O_RDONLY);
 		if (!win->ea_file || win->ea_fd < 0)
 			file_error(line[1]);
 	}
 	if (!ft_strcmp(line[0], "WE"))
 	{
 		win->we_file = ft_strdup(line[1]);
-		win->no_fd = open(line[1], O_RDONLY);
+		win->we_fd = open(line[1], O_RDONLY);
 		if (!win->we_file || win->we_fd < 0)
 			file_error(line[1]);
 	}
@@ -68,7 +68,7 @@ void	store_check(char **line, t_win *win)
 	if (!ft_strcmp(line[0], "SO"))
 	{
 		win->so_file = ft_strdup(line[1]);
-		win->no_fd = open(line[1], O_RDONLY);
+		win->so_fd = open(line[1], O_RDONLY);
 		if (!win->so_file || win->so_fd < 0)
 			file_error(line[1]);
 	}

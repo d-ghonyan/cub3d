@@ -81,17 +81,31 @@ int	middle(char *s, char *s1, char *s2)
 	while (s[i])
 	{
 		while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
-			i++;
+		{
+			if (s[i] == '\t')
+				i += 4;
+			else
+				i++;
+		}
 		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
-			if ((s[i] == '0') && (!valid_map_char(s1[i], 1)
-					|| !valid_map_char(s2[i], 1)
-					|| !valid_map_char(s[i - 1], 1)
-					|| !valid_map_char(s[i + 1], 1)
-					|| !valid_map_char(s1[i - 1], 1)
-					|| !valid_map_char(s1[i + 1], 1)
-					|| !valid_map_char(s2[i - 1], 1)
-					|| !valid_map_char(s2[i + 1], 1)))
+			if (s[i] == '0'
+					&&
+					(
+						(
+						ft_strlen_map(s1) < i
+						|| ft_strlen_map(s2) < i
+						|| !valid_map_char(s[i - 1], 1)
+						|| !valid_map_char(s[i + 1], 1)
+						|| !valid_map_char(s1[i], 1)
+						|| !valid_map_char(s2[i], 1)
+						|| !valid_map_char(s1[i - 1], 1)
+						|| !valid_map_char(s2[i - 1], 1)
+						|| !valid_map_char(s1[i + 1], 1)
+						|| !valid_map_char(s2[i + 1], 1)
+						)
+					)
+				)
 				return (0);
 			i++;
 		}
@@ -115,10 +129,10 @@ int	validate_map(char **map)
 	{
 		j = -1;
 		if ((i == 0 || i == len - 1) && !first_last(map[i]))
-			error("Map not surrunded by walls", 0);
+			error("Map not surrunded by walls 1", 0);
 		else if (i > 0 && i < len - 1
 			&& !middle(map[i], map[i - 1], map[i + 1]))
-			error("Map not surrunded by walls", 0);
+			error("Map not surrunded by walls 2", 0);
 	}
 	return (0);
 }
