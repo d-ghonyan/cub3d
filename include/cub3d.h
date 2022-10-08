@@ -22,7 +22,7 @@
 #  define LEFT 97
 #  define RIGHT 100
 # else
-#  include <mlx.h>
+// #  include <mlx.h>
 
 #  define ESC 53
 #  define UP_A 126
@@ -41,7 +41,6 @@
 
 typedef struct s_window
 {
-	t_list	*map;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -56,6 +55,7 @@ typedef struct s_window
 	char	*so_file;
 	char	*f_color;
 	char	*c_color;
+	char	**map;
 	int		no_fd;
 	int		we_fd;
 	int		ea_fd;

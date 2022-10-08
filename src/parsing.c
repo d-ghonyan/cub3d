@@ -27,7 +27,6 @@ void	parse_map(int argc, char **argv, t_win *win)
 	char	**map;
 	char	**saved_map;
 
-	(void)win;
 	if (argc == 1 || wrong_extension(argv[1], ".cub"))
 		error ("Wrong arguments", 0);
 	fd = open(argv[1], O_RDONLY);
@@ -39,8 +38,6 @@ void	parse_map(int argc, char **argv, t_win *win)
 		error("Missing options", 0);
 	map = convert_tabs(map, saved_map);
 	validate_map(map);
-	int i = -1;
-	while (map[++i])
-		printf("%s", map[i]);
+	win->map = map;
 	close(fd);
 }
