@@ -30,8 +30,7 @@ ifeq ($(UNAME_S), Linux)
 else
 	CFLAGS = -I./include -g -ggdb -fsanitize=address
 #-Werror -Wall -Wextra
-	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm
-#-lmlx 
+	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx 
 endif
 
 all : $(NAME)

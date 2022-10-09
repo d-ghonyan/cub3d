@@ -51,7 +51,7 @@ char	*convert(char *s)
 	int		k;
 	char	*res;
 
-	i = (j = 0);
+	i = ((j = 0) && 0);
 	res = malloc(sizeof (*res) * (ft_strlen_map(s) + 1));
 	if (!res)
 		error("malloc", 1);

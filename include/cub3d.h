@@ -22,7 +22,7 @@
 #  define LEFT 97
 #  define RIGHT 100
 # else
-// #  include <mlx.h>
+#  include <mlx.h>
 
 #  define ESC 53
 #  define UP_A 126
@@ -39,27 +39,34 @@
 
 # define WH 800
 
+typedef struct s_img
+{
+	int		w;
+	int		h;
+	int		fd;
+	void	*img;
+}	t_img;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
+
 typedef struct s_window
 {
+	t_img	no;
+	t_img	ea;
+	t_img	we;
+	t_img	so;
+	t_color	f;
+	t_color	c;
+	char	**map;
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	*addr;
-	void	*no_img;
-	void	*we_img;
-	void	*ea_img;
-	void	*so_img;
-	char	*no_file;
-	char	*we_file;
-	char	*ea_file;
-	char	*so_file;
-	char	*f_color;
-	char	*c_color;
-	char	**map;
-	int		no_fd;
-	int		we_fd;
-	int		ea_fd;
-	int		so_fd;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -86,7 +93,7 @@ int		get_options(char ***map, t_win *win);
 void	file_error(char *s);
 int		validate_map(char **map);
 int		space_or_nl(char *s);
-int		valid_map_char(char c, int check_surrounded);
+int		valid(char c, int check_surrounded);
 int		ft_strlen_map(char *s);
 char	**convert_tabs(char **map, char **saved);
 

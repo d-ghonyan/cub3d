@@ -9,6 +9,8 @@
 		"__string": "c",
 		"algorithm": "c",
 		"bitset": "c",
-		"vector": "c"
+		"vector": "c",
+		"__config": "c",
+		"atomic": "c"
 	}
 }

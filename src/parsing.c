@@ -12,7 +12,7 @@
 
 #include "cub3d.h" 
 
-int	valid_map_char(char c, int check_surrounded)
+int	valid(char c, int check_surrounded)
 {
 	if (check_surrounded)
 		return (c == '1' || c == 'N' || c == 'W'

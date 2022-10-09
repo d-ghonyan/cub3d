@@ -14,7 +14,16 @@
 
 int		is_in_check(char *s, char *check[6]);
 void	init_check(char *(*check)[7]);
-void	store_check(char **line, t_win *win);
+void	store_textures(char **line, t_win *win);
+
+void	init_check(char *(*check)[7])
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+		(*check)[i++] = NULL;
+}
 
 int	is_allowed(char *s)
 {
@@ -67,7 +76,7 @@ int	get_options(char ***map, t_win *win)
 		if (i && is_in_check(line[0], check))
 			error("Duplicates", 0);
 		check[i++] = ft_strdup(line[0]);
-		store_check(line, win);
+		store_textures(line, win);
 		ft_splfree(line);
 		*map = pass_nl(*map, 0);
 	}

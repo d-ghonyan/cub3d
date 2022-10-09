@@ -30,7 +30,7 @@ int	check_characters(char **map, int len)
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'N' || map[i][j] == 'S')
 				player++;
-			if (!valid_map_char(map[i][j], 0))
+			if (!valid(map[i][j], 0))
 				return (0);
 		}
 	}
@@ -89,23 +89,11 @@ int	middle(char *s, char *s1, char *s2)
 		}
 		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
-			if (s[i] == '0'
-					&&
-					(
-						(
-						ft_strlen_map(s1) < i
-						|| ft_strlen_map(s2) < i
-						|| !valid_map_char(s[i - 1], 1)
-						|| !valid_map_char(s[i + 1], 1)
-						|| !valid_map_char(s1[i], 1)
-						|| !valid_map_char(s2[i], 1)
-						|| !valid_map_char(s1[i - 1], 1)
-						|| !valid_map_char(s2[i - 1], 1)
-						|| !valid_map_char(s1[i + 1], 1)
-						|| !valid_map_char(s2[i + 1], 1)
-						)
-					)
-				)
+			if (s[i] == '0' && ((ft_strlen_map(s1) < i || ft_strlen_map(s2) < i
+						|| !valid(s[i - 1], 1) || !valid(s[i + 1], 1)
+						|| !valid(s1[i], 1) || !valid(s2[i], 1)
+						|| !valid(s1[i - 1], 1) || !valid(s2[i - 1], 1)
+						|| !valid(s1[i + 1], 1) || !valid(s2[i + 1], 1))))
 				return (0);
 			i++;
 		}
@@ -122,7 +110,7 @@ int	validate_map(char **map)
 	i = -1;
 	len = have_newlines(map);
 	if (len < 0)
-		return (0);
+		error("Wrong map", 0);
 	if (!check_characters(map, len))
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
