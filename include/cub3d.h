@@ -47,21 +47,14 @@ typedef struct s_img
 	void	*img;
 }	t_img;
 
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
-
 typedef struct s_window
 {
 	t_img	no;
 	t_img	ea;
 	t_img	we;
 	t_img	so;
-	t_color	f;
-	t_color	c;
+	int		f_color;
+	int		c_color;
 	char	**map;
 	void	*mlx;
 	void	*win;

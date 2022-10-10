@@ -55,7 +55,7 @@ void	check_colors(char *s)
 		error ("Wrong colors", 0);
 }
 
-void	store_colors(t_color *color, char *s)
+void	store_colors(int *color, char *s)
 {
 	int		i;
 	int		j;
@@ -74,12 +74,12 @@ void	store_colors(t_color *color, char *s)
 				error("Wrong colors", 0);
 	}
 	i = -1;
-	color->r = ft_atoi(colors[0]);
-	color->g = ft_atoi(colors[1]);
-	color->b = ft_atoi(colors[2]);
-	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255
-		|| color->b < 0 || color->b > 255)
+	if (ft_atoi(colors[0]) < 0 || ft_atoi(colors[0]) > 255
+		|| ft_atoi(colors[1]) < 0 || ft_atoi(colors[1]) > 255
+		|| ft_atoi(colors[2]) < 0 || ft_atoi(colors[2]) > 255)
 		error("Wrong colors", 0);
+	*color = ft_atoi(colors[0]) << 16
+		| ft_atoi(colors[1]) << 8 | ft_atoi(colors[2]);
 	ft_splfree(colors);
 }
 
@@ -94,7 +94,7 @@ void	store_textures(char **line, t_win *win)
 	if (!ft_strcmp(line[0], "SO"))
 		store_xpm(&(win->so), win->mlx, line[1]);
 	if (!ft_strcmp(line[0], "F"))
-		store_colors(&(win->f), line[1]);
+		store_colors(&(win->f_color), line[1]);
 	if (!ft_strcmp(line[0], "C"))
-		store_colors(&(win->c), line[1]);
+		store_colors(&(win->c_color), line[1]);
 }

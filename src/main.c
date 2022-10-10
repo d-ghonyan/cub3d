@@ -38,7 +38,7 @@ void	ft_init(t_win *s)
 	mlx_hooks(s);
 }
 
-void	init_win(t_win *win)
+void	init_win(t_win *win, int argc, char **argv)
 {
 	win->ea.fd = -1;
 	win->we.fd = -1;
@@ -53,14 +53,14 @@ void	init_win(t_win *win)
 	win->we.img = NULL;
 	win->ea.img = NULL;
 	win->so.img = NULL;
+	ft_init(win);
+	parse_map(argc, argv, win);
 }
 
 int	main(int argc, char **argv)
 {
-	t_win	img;
+	t_win	win;
 
-	init_win(&img);
-	ft_init(&img);
-	parse_map(argc, argv, &img);
+	init_win(&win, argc, argv);
+	mlx_loop(win.mlx);
 }
-	// mlx_loop(img.mlx);
