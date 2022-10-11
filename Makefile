@@ -25,8 +25,8 @@ LIBFT = libft/libft.a
 RM = rm -rf
 
 ifeq ($(UNAME_S), Linux)
-	CFLAGS = -Wall -Werror -Wextra -D LINUX  -I./include
-	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	CFLAGS = -Wall -Werror -Wextra -D LINUX -I./include -I../mlx_linux
+	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
 	CFLAGS = -Wall -Werror -Wextra  -I./include
 	LINKLIB = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit -lm
