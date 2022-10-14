@@ -2,9 +2,9 @@ NO xpm/north.xpm
 SO xpm/south.xpm
 WE xpm/west.xpm
 EA xpm/east.xpm
-				
+
 F	255,255,255
-C	225,+30,0123
+C	225,30,123
 
 
 

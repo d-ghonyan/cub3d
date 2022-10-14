@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   option_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/09/25 17:34:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:50:59 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ void	store_xpm(t_img *img, void *mlx, char *name)
 		file_error(name);
 	img->img = mlx_xpm_file_to_image(mlx, name, &(img->w), &(img->h));
 	if (!img->img)
+	{
+		close(img->fd);
+		file_error(name);
+	}
+	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
+			&(img->line_length), &(img->endian));
+	if (!img->addr)
 	{
 		close(img->fd);
 		file_error(name);

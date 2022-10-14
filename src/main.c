@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/09/25 17:25:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:09:14 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	ft_init(t_win *s)
 	s->mlx = mlx_init();
 	if (!s->mlx)
 		error("MLX Error", 0);
-	s->win = mlx_new_window(s->mlx, WH, WH, "CUB3D");
+	s->win = mlx_new_window(s->mlx, WIDTH_WIN, HEIGHT_WIN, "CUB3D");
 	if (NULL == s->win)
 		error("Window Error", 0);
-	s->img = mlx_new_image(s->mlx, WH, WH);
+	s->img = mlx_new_image(s->mlx, WIDTH_WIN, HEIGHT_WIN);
 	if (!s->img)
 		error("IMG Error", 0);
 	s->addr = mlx_get_data_addr(s->img,
@@ -62,5 +62,6 @@ int	main(int argc, char **argv)
 	t_win	win;
 
 	init_win(&win, argc, argv);
+	render(&win);
 	mlx_loop(win.mlx);
 }

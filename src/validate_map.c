@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/09/25 17:34:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/14 11:25:39 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	middle(char *s, char *s1, char *s2)
 int	validate_map(char **map)
 {
 	int	i;
-	int	j;
+	// int	j;
 	int	len;
 
 	i = -1;
@@ -115,7 +115,7 @@ int	validate_map(char **map)
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
 	{
-		j = -1;
+		// j = -1;
 		if ((i == 0 || i == len - 1) && !first_last(map[i]))
 			error("Map not surrunded by walls 1", 0);
 		else if (i > 0 && i < len - 1

@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_hooks.c                                        :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:01:23 by mtiesha          ###   ########.fr       */
+/*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
+/*   Updated: 2022/10/14 19:14:41 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hook(int keycode, t_win *win)
+int	*render(t_win *win)
 {
-	if (keycode == ESC)
-		destroy_hook(win);
-	render(win);
+	drow_floor_and_ceil(win);
+	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
 	return (0);
-}
-
-int	mouse_hook(int code, int x, int y, t_win *win)
-{
-	(void)code;
-	(void)x;
-	(void)y;
-	(void)win;
-	return (0);
-}
-
-int	destroy_hook(t_win *win)
-{
-	(void)win;
-	exit(EXIT_SUCCESS);
 }

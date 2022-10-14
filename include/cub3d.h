@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/09/25 17:25:33 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:11:53 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #  define DOWN 115
 #  define LEFT 97
 #  define RIGHT 100
+#  define WIDTH_WIN 1024
+#  define HEIGHT_WIN 800
 # else
 #  include <mlx.h>
 
@@ -29,6 +31,9 @@
 #  define DOWN_A 125
 #  define LEFT_A 123
 #  define RIGHT_A 124
+#  define WIDTH_WIN 2560
+#  define HEIGHT_WIN 1400
+
 # endif
 
 # include "../libft/libft.h"
@@ -37,13 +42,16 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WH 800
 
 typedef struct s_img
 {
 	int		w;
 	int		h;
 	int		fd;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	void	*img;
 }	t_img;
 
@@ -89,5 +97,9 @@ int		space_or_nl(char *s);
 int		valid(char c, int check_surrounded);
 int		ft_strlen_map(char *s);
 char	**convert_tabs(char **map, char **saved);
+
+void	drow_floor_and_ceil(t_win *win);
+
+int		*render(t_win *win);
 
 #endif

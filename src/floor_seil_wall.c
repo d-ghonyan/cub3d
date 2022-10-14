@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_hooks.c                                        :+:      :+:    :+:   */
+/*   floor_sell_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:01:23 by mtiesha          ###   ########.fr       */
+/*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
+/*   Updated: 2022/10/14 19:15:12 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_hook(int keycode, t_win *win)
+void	drow_floor_and_ceil(t_win *win)
 {
-	if (keycode == ESC)
-		destroy_hook(win);
-	render(win);
-	return (0);
-}
+	int	i;
+	int	j;
 
-int	mouse_hook(int code, int x, int y, t_win *win)
-{
-	(void)code;
-	(void)x;
-	(void)y;
-	(void)win;
-	return (0);
-}
-
-int	destroy_hook(t_win *win)
-{
-	(void)win;
-	exit(EXIT_SUCCESS);
+	i = 0;
+	while (i < HEIGHT_WIN / 2)
+	{
+		j = 0;
+		while (j < WIDTH_WIN)
+		{
+			ft_put_pixel(win, j, i, win->c_color);
+			++j;
+		}
+		++i;
+	}
+	while (i < HEIGHT_WIN)
+	{
+		j = 0;
+		while (j < WIDTH_WIN)
+		{
+			ft_put_pixel(win, j, i, win->f_color);
+			++j;
+		}
+		++i;
+	}
 }
