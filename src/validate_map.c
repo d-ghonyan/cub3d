@@ -104,7 +104,10 @@ int	middle(char *s, char *s1, char *s2)
 int	validate_map(char **map)
 {
 	int	i;
+<<<<<<< HEAD
 	// int	j;
+=======
+>>>>>>> 58ded912f1b332c4328aac0334f3730a08d83cdf
 	int	len;
 
 	i = -1;
@@ -115,7 +118,10 @@ int	validate_map(char **map)
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
 	{
+<<<<<<< HEAD
 		// j = -1;
+=======
+>>>>>>> 58ded912f1b332c4328aac0334f3730a08d83cdf
 		if ((i == 0 || i == len - 1) && !first_last(map[i]))
 			error("Map not surrunded by walls 1", 0);
 		else if (i > 0 && i < len - 1
