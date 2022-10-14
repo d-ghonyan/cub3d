@@ -104,7 +104,6 @@ int	middle(char *s, char *s1, char *s2)
 int	validate_map(char **map)
 {
 	int	i;
-	int	j;
 	int	len;
 
 	i = -1;
@@ -115,7 +114,6 @@ int	validate_map(char **map)
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
 	{
-		j = -1;
 		if ((i == 0 || i == len - 1) && !first_last(map[i]))
 			error("Map not surrunded by walls 1", 0);
 		else if (i > 0 && i < len - 1
