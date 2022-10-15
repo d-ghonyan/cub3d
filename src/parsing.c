@@ -27,7 +27,7 @@ void	parse_map(int argc, char **argv, t_win *win)
 	char	**map;
 	char	**saved_map;
 
-	if (argc == 1 || wrong_extension(argv[1], ".cub"))
+	if (wrong_extension(argv[1], ".cub"))
 		error ("Wrong arguments", 0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

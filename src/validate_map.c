@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* so many things to change */
-
 #include "cub3d.h"
 
 int	check_characters(t_win *win, char **map, int len)
