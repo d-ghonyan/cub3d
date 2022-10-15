@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # ifdef LINUX
-#  include "../mlx_linux/mlx.h"
+#  include "mlx.h"
 
 #  define ESC 65307
 #  define UP 119
@@ -36,12 +36,11 @@
 
 # endif
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-
 
 typedef struct s_img
 {

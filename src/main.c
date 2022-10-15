@@ -61,6 +61,8 @@ int	main(int argc, char **argv)
 {
 	t_win	win;
 
+	if (argc != 2)
+		return (0);
 	init_win(&win, argc, argv);
 	render(&win);
 	mlx_loop(win.mlx);
