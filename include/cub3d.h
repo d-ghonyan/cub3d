@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/14 19:11:53 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 13:29:25 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-
 typedef struct s_img
 {
 	int		w;
@@ -55,22 +54,65 @@ typedef struct s_img
 	void	*img;
 }	t_img;
 
+typedef struct s_player
+{
+	int		map_position_x;
+	int		map_position_y;
+	double	position_x;
+	double	position_y;
+	double	direction_x;
+	double	direction_y;
+}	t_player;
+
+typedef struct s_dda
+{
+	int		direction_dda;// if we go to the y, is 1, if to the x, is 0
+	double	cell_distance_x;//delta
+	double	cell_distance_y;// cell size
+	int		step_x;
+	int		step_y;
+	double	shift_x;// distance to the nearest intersection
+	double	shift_y;//side
+}	t_dda;
+
+typedef struct s_ray
+{
+	double	direction_x;
+	double	direction_y;
+	double	plane_x;
+	double	plane_y;
+	int		number;// number ray
+	t_dda	dda;
+}	t_ray;
+
+typedef struct s_wall
+{
+	double	row;//x
+	double	column;//y
+	int		height;
+	int		start_pixel;
+	double	distance;
+}	t_wall;
+
 typedef struct s_window
 {
-	t_img	no;
-	t_img	ea;
-	t_img	we;
-	t_img	so;
-	int		f_color;
-	int		c_color;
-	char	**map;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	t_img		no;
+	t_img		ea;
+	t_img		we;
+	t_img		so;
+	int			f_color;
+	int			c_color;
+	char		**map;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_ray		ray;
+	t_wall		wall;
+	t_player	player;
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -92,14 +134,23 @@ int		wrong_extension(char *s, char *extension);
 char	**get_map(int fd);
 int		get_options(char ***map, t_win *win);
 void	file_error(char *s);
-int		validate_map(char **map);
+int		validate_map(t_win *win, char **map);
 int		space_or_nl(char *s);
 int		valid(char c, int check_surrounded);
 int		ft_strlen_map(char *s);
 char	**convert_tabs(char **map, char **saved);
 
+/*init struct.c*/
+void	ft_init_img(t_win *win);
+void	ft_init_mlx(t_win *s);
+void	ft_set_player(t_win *win, char dir, int x, int y);//parsing_utils.c
+
 void	drow_floor_and_ceil(t_win *win);
 
-int		*render(t_win *win);
+void	ft_calc_dist_height_wall(t_win *win);
+void	ft_calc_row_wall(t_win *win);
+void	ft_draw_wall(t_win *win);
+
+int		*ft_render(t_win *win);
 
 #endif

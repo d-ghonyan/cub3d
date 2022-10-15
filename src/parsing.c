@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/09/25 17:34:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/15 10:29:38 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h" 
+#include "cub3d.h"
 
 int	valid(char c, int check_surrounded)
 {
@@ -37,7 +37,7 @@ void	parse_map(int argc, char **argv, t_win *win)
 	if (get_options(&map, win) || !map)
 		error("Missing options", 0);
 	map = convert_tabs(map, saved_map);
-	validate_map(map);
+	validate_map(win, map);
 	win->map = map;
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/14 19:01:23 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 13:20:21 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	key_hook(int keycode, t_win *win)
 {
 	if (keycode == ESC)
 		destroy_hook(win);
-	render(win);
+	ft_render(win);
+	ft_putendl_fd("[Log] re render", 2);
 	return (0);
 }
 

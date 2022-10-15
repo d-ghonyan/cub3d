@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/14 11:25:39 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 11:15:40 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 #include "cub3d.h"
 
-int	check_characters(char **map, int len)
+int	check_characters(t_win *win, char **map, int len)
 {
 	int	i;
 	int	j;
-	int	player;
 
 	i = -1;
-	player = 0;
 	while (++i < len)
 	{
 		j = -1;
@@ -29,12 +27,12 @@ int	check_characters(char **map, int len)
 		{
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'N' || map[i][j] == 'S')
-				player++;
+				ft_set_player(win, map[i][j], i, j);
 			if (!valid(map[i][j], 0))
 				return (0);
 		}
 	}
-	return (player == 1);
+	return (1);
 }
 
 int	have_newlines(char **map)
@@ -101,27 +99,19 @@ int	middle(char *s, char *s1, char *s2)
 	return (1);
 }
 
-int	validate_map(char **map)
+int	validate_map(t_win *win, char **map)
 {
 	int	i;
-<<<<<<< HEAD
-	// int	j;
-=======
->>>>>>> 58ded912f1b332c4328aac0334f3730a08d83cdf
 	int	len;
 
 	i = -1;
 	len = have_newlines(map);
 	if (len < 0)
 		error("Wrong map", 0);
-	if (!check_characters(map, len))
+	if (!check_characters(win, map, len))
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
 	{
-<<<<<<< HEAD
-		// j = -1;
-=======
->>>>>>> 58ded912f1b332c4328aac0334f3730a08d83cdf
 		if ((i == 0 || i == len - 1) && !first_last(map[i]))
 			error("Map not surrunded by walls 1", 0);
 		else if (i > 0 && i < len - 1

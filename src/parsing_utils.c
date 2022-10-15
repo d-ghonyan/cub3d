@@ -1,16 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/09/25 17:34:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:16:58 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_set_player(t_win *win, char dir, int x, int y)
+{
+	win->player.position_x = y + 0.5;
+	win->player.position_y = x + 0.5;
+	// win->map[x][y] = '0';
+	if (dir == 'N')
+	{
+		win->player.direction_x = 0.0;
+		win->player.direction_y = -1.0;
+		win->ray.plane_x = 0.66;
+		win->ray.plane_y = 0.0;
+	}
+	else if (dir == 'S')
+	{
+		win->player.direction_x = 0.0;
+		win->player.direction_y = 1.0;
+		win->ray.plane_x = -0.66;
+		win->ray.plane_y = 0.0;
+	}
+	else if (dir == 'W')
+	{
+		win->player.direction_x = -1.0;
+		win->player.direction_y = 0.0;
+		win->ray.plane_x = 0.0;
+		win->ray.plane_y = -0.66;
+	}
+	else if (dir == 'E')
+	{
+		win->player.direction_x = 1.0;
+		win->player.direction_y = 0.0;
+		win->ray.plane_x = 0.0;
+		win->ray.plane_y = 0.66;
+	}
+}
 
 int	space_or_nl(char *s)
 {
