@@ -17,6 +17,30 @@
 	fd - read from
 */
 
+char	*get_next_line(int fd)
+{
+	char	*s;
+	char	c;
+	int		rd;
+
+	s = NULL;
+	rd = 0;
+	c = '\0';
+	while (c != '\n')
+	{
+		rd = read(fd, &c, 1);
+		if (rd == -1)
+		{
+			free(s);
+			return (NULL);
+		}
+		if (rd == 0)
+			return (s);
+		s = ft_charadd_end(s, c);
+	}
+	return (s);
+}
+
 int	ft_gnl_sh(char **line, int memory, int fd)
 {
 	char	*buffer;

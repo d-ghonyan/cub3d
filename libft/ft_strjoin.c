@@ -82,3 +82,30 @@ char	*ft_strjoinfree(char **str1, char **str2, int free_flag)
 	}
 	return (ret);
 }
+
+char	*ft_strjoinfree_v2(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+	char	*res;
+
+	i = -1;
+	j = 0;
+	res = malloc(sizeof (*res) * (ft_strlen(s1) + ft_strlen(s2)));
+	if (!res)
+	{
+		free(s1);
+		return (NULL);
+	}
+	while (s1 && s1[++i])
+		res[i] = s1[i];
+	while (s2[j])
+	{
+		res[i] = s2[j];
+		i++;
+		j++;
+	}
+	free(s1);
+	res[i] = '\0';
+	return (res);
+}

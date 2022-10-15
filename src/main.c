@@ -3,46 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dghonyan <dghonyan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/09/25 17:25:21 by dghonyan         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:20:56 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	mlx_hooks(t_win *win)
+static void	init_win(t_win *win, int argc, char **argv)
 {
-	mlx_key_hook(win->win, &key_hook, win);
-	mlx_mouse_hook(win->win, &mouse_hook, win);
-	mlx_hook(win->win, 17, 0, &destroy_hook, win);
-}
-
-void	ft_init(t_win *s)
-{
-	s->mlx = mlx_init();
-	if (NULL == s->mlx)
-		error("MLX Error", 0);
-	s->win = mlx_new_window(s->mlx, WH, WH, "CUB3D");
-	if (NULL == s->win)
-		error("Window Error", 0);
-	s->img = mlx_new_image(s->mlx, WH, WH);
-	if (!s->img)
-		error("IMG Error", 0);
-	s->addr = mlx_get_data_addr(s->img, \
-			&s->bits_per_pixel, &s->line_length, \
-			&s->endian);
-	if (!s->addr)
-		error("IMG Fill(bpp etc) Error", 0);
-	mlx_hooks(s);
+	ft_init_img(win);
+	ft_init_mlx(win);
+	parse_map(argc, argv, win);
 }
 
 int	main(int argc, char **argv)
 {
-	t_win	img;
+	t_win	win;
 
-	parse_map(argc, argv, &img);
-	ft_init(&img);
-	mlx_loop(img.mlx);
+	init_win(&win, argc, argv);
+	ft_render(&win);
+	ft_putendl_fd("[Log] first render", 2);
+	mlx_loop(win.mlx);
 }
