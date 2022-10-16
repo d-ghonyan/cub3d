@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 13:20:21 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/16 10:51:05 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ int	key_hook(int keycode, t_win *win)
 {
 	if (keycode == ESC)
 		destroy_hook(win);
+	else if (keycode == UP)
+		move_up(win);
+	else if (keycode == DOWN)
+		move_down(win);
+	else if (keycode == LEFT)
+		move_left(win);
+	else if (keycode == RIGHT)
+		move_right(win);
+	else if (keycode == ROTATE_LEFT)
+		rotate_left(win);
+	else if (keycode == ROTATE_RIGHT)
+		rotate_right(win);
 	ft_render(win);
 	ft_putendl_fd("[Log] re render", 2);
 	return (0);

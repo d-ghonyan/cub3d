@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 13:29:25 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/16 16:48:46 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,20 @@
 #  define DOWN 115
 #  define LEFT 97
 #  define RIGHT 100
+#  define ROTATE_LEFT 65361
+#  define ROTATE_RIGHT 65363
 #  define WIDTH_WIN 1024
 #  define HEIGHT_WIN 800
 # else
 #  include <mlx.h>
 
 #  define ESC 53
-#  define UP_A 126
-#  define DOWN_A 125
-#  define LEFT_A 123
-#  define RIGHT_A 124
+#  define UP 13
+#  define DOWN 1
+#  define LEFT 0
+#  define RIGHT 2
+#  define ROTATE_LEFT 123
+#  define ROTATE_RIGHT 124
 #  define WIDTH_WIN 2560
 #  define HEIGHT_WIN 1400
 
@@ -150,6 +154,12 @@ void	drow_floor_and_ceil(t_win *win);
 void	ft_calc_dist_height_wall(t_win *win);
 void	ft_calc_row_wall(t_win *win);
 void	ft_draw_wall(t_win *win);
+
+/*manage_keys.c*/
+void	move_up_down(t_win *win);
+void	move_left_right(t_win *win);
+void	rotate_left(t_win *win);
+void	rotate_right(t_win *win);
 
 int		*ft_render(t_win *win);
 

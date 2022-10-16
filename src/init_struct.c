@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 09:16:50 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 13:46:19 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 16:57:50 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_init_wall_player(t_win *win)
 	win->wall.height = 0;
 	win->wall.start_pixel = 0;
 	win->wall.distance = 0.0;
+
 	win->player.map_position_x = 0;
 	win->player.map_position_y = 0;
 	win->player.position_x = 0.0;

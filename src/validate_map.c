@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 11:15:40 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 17:24:53 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	check_characters(t_win *win, char **map, int len)
 {
 	int	i;
 	int	j;
+	int	player;
 
+	player = 0;
 	i = -1;
 	while (++i < len)
 	{
@@ -27,12 +29,15 @@ int	check_characters(t_win *win, char **map, int len)
 		{
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'N' || map[i][j] == 'S')
+			{
+				player++;
 				ft_set_player(win, map[i][j], i, j);
+			}
 			if (!valid(map[i][j], 0))
 				return (0);
 		}
 	}
-	return (1);
+	return (player == 1);
 }
 
 int	have_newlines(char **map)

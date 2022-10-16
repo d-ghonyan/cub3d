@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 13:16:58 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/16 13:08:22 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_set_player(t_win *win, char dir, int x, int y)
 	{
 		win->player.direction_x = 0.0;
 		win->player.direction_y = -1.0;
-		win->ray.plane_x = 0.66;
+		win->ray.plane_x = 0.70;
 		win->ray.plane_y = 0.0;
 	}
 	else if (dir == 'S')
 	{
 		win->player.direction_x = 0.0;
 		win->player.direction_y = 1.0;
-		win->ray.plane_x = -0.66;
+		win->ray.plane_x = -0.70;
 		win->ray.plane_y = 0.0;
 	}
 	else if (dir == 'W')
@@ -36,14 +36,14 @@ void	ft_set_player(t_win *win, char dir, int x, int y)
 		win->player.direction_x = -1.0;
 		win->player.direction_y = 0.0;
 		win->ray.plane_x = 0.0;
-		win->ray.plane_y = -0.66;
+		win->ray.plane_y = -0.70;
 	}
 	else if (dir == 'E')
 	{
 		win->player.direction_x = 1.0;
 		win->player.direction_y = 0.0;
 		win->ray.plane_x = 0.0;
-		win->ray.plane_y = 0.66;
+		win->ray.plane_y = 0.70;
 	}
 }
 

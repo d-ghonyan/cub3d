@@ -6,7 +6,7 @@
 /*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 13:20:56 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/15 17:50:39 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 
 	init_win(&win, argc, argv);
 	ft_render(&win);
+	mlx_hook(win.win, 2, 1L << 0, key_hook, &win);
 	ft_putendl_fd("[Log] first render", 2);
 	mlx_loop(win.mlx);
 }
