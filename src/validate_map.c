@@ -106,6 +106,7 @@ int	validate_map(t_win *win, char **map)
 	len = have_newlines(map);
 	if (len < 0)
 		error("Wrong map", 0);
+	win->map_len = len;
 	if (!check_characters(win, map, len))
 		error("Something's wrong with characters...", 0);
 	while (++i < len)

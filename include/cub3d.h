@@ -102,6 +102,7 @@ typedef struct s_window
 	t_img		so;
 	int			f_color;
 	int			c_color;
+	int			map_len;
 	char		**map;
 	void		*mlx;
 	void		*win;
