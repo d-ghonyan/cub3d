@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/16 10:51:05 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/17 07:37:53 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,10 @@ int	key_hook(int keycode, t_win *win)
 {
 	if (keycode == ESC)
 		destroy_hook(win);
-	else if (keycode == UP)
-		move_up(win);
-	else if (keycode == DOWN)
-		move_down(win);
-	else if (keycode == LEFT)
-		move_left(win);
-	else if (keycode == RIGHT)
-		move_right(win);
+	else if (keycode == UP || keycode == DOWN)
+		move_up_down(win, keycode);
+	else if (keycode == LEFT || keycode == RIGHT)
+		move_left_right(win, keycode);
 	else if (keycode == ROTATE_LEFT)
 		rotate_left(win);
 	else if (keycode == ROTATE_RIGHT)

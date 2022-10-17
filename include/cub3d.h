@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/16 16:48:46 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/17 07:33:45 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ void	ft_calc_row_wall(t_win *win);
 void	ft_draw_wall(t_win *win);
 
 /*manage_keys.c*/
-void	move_up_down(t_win *win);
-void	move_left_right(t_win *win);
+void	move_up_down(t_win *win, int keycode);
+void	move_left_right(t_win *win, int keycode);
 void	rotate_left(t_win *win);
 void	rotate_right(t_win *win);
 
