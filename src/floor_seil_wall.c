@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_seil_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/16 16:43:10 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:29:47 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	ft_calc_dist_height_wall(t_win *win)
 	else
 		win->wall.distance = win->ray.dda.shift_x \
 			- win->ray.dda.cell_distance_x;
+	if (win->wall.distance < 1)
+		win->wall.distance = 1;
 	win->wall.height = (int)(HEIGHT_WIN / win->wall.distance);
 	win->wall.start_pixel = HEIGHT_WIN / 2 - win->wall.height / 2;
 }
