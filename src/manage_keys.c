@@ -6,12 +6,12 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/17 07:40:09 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:35:59 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#define SPEED 0.5
+#define SPEED 0.1
 #define ROT_SPEED 0.05
 
 void	move_up_down(t_win *win, int keycode)
@@ -34,7 +34,7 @@ void	move_up_down(t_win *win, int keycode)
 			- win->player.direction_x * SPEED)] != '1')
 			win->player.position_x -= win->player.direction_x * SPEED;
 	}
-	ft_putendl_fd("move_up_down", 2);
+	ft_putendl_fd("[Log] move_up_down", 2);
 }
 
 void	move_left_right(t_win *win, int keycode)

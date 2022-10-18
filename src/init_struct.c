@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 09:16:50 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 16:57:50 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:48:15 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_init_img(t_win *win)
 static void	mlx_hooks(t_win *win)
 {
 	mlx_key_hook(win->win, &key_hook, win);
+	win->mouse_flag = 0;
 	mlx_mouse_hook(win->win, &mouse_hook, win);
 	mlx_hook(win->win, 17, 0, &destroy_hook, win);
 }

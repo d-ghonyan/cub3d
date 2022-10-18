@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/17 07:33:45 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/18 12:48:05 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define ROTATE_RIGHT 65363
 #  define WIDTH_WIN 1024
 #  define HEIGHT_WIN 800
+#  define M_KEY 109
 # else
 #  include <mlx.h>
 
@@ -117,6 +118,7 @@ typedef struct s_window
 	t_ray		ray;
 	t_wall		wall;
 	t_player	player;
+	int			mouse_flag;// if 1 - mouse_rotate is active [M button]
 }	t_win;
 
 /* my pixel_put, from 42docs */
