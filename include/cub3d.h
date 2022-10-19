@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/18 12:48:05 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 12:20:51 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 #  define RIGHT 2
 #  define ROTATE_LEFT 123
 #  define ROTATE_RIGHT 124
-#  define WIDTH_WIN 2560
-#  define HEIGHT_WIN 1400
+#  define WIDTH_WIN 1500
+#  define HEIGHT_WIN 1000
 
 # endif
 
