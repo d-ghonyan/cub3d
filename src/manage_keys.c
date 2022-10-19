@@ -6,26 +6,35 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 12:48:06 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 13:24:25 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #define SPEED 0.1
+#define SPEED_D 0.3
 #define ROT_SPEED 0.05
 
 void	move_up_down(t_win *win, int keycode)
 {
 	if (keycode == UP)
 	{
-		// printf("player pos y:%f x:%f\n", \
-		// 	win->player.position_y, win->player.position_x);
-		// if coordinates > 8.1 and < 8.9
+		printf("player pos y:%f x:%f\n", \
+			win->player.position_y, win->player.position_x);
+		// if coordinates > 0.3
+		// if (0.3 <= (win->player.position_y - (int)(win->player.position_y)))
+		// {
+		// 	if (win->map[(int)(win->player.position_y + win->player.direction_y \
+		// 		* (SPEED))][(int)win->player.position_x] != '1')
+		// 		win->player.position_y += win->player.direction_y * SPEED;
+		// }
 		if (win->map[(int)(win->player.position_y + win->player.direction_y \
-			* SPEED)][(int)win->player.position_x] != '1')
+			* (SPEED_D))][(int)win->player.position_x] != '1')
+		{
 			win->player.position_y += win->player.direction_y * SPEED;
+		}
 		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			+ win->player.direction_x * SPEED)] != '1')
+			+ win->player.direction_x * SPEED_D)] != '1')
 			win->player.position_x += win->player.direction_x * SPEED;
 	}
 	else if (keycode == DOWN)
@@ -33,10 +42,10 @@ void	move_up_down(t_win *win, int keycode)
 		// printf("player pos y:%f x:%f\n", \
 		// 	win->player.position_y, win->player.position_x);
 		if (win->map[(int)(win->player.position_y - win->player.direction_y \
-			* SPEED)][(int)win->player.position_x] != '1')
+			* SPEED_D)][(int)win->player.position_x] != '1')
 			win->player.position_y -= win->player.direction_y * SPEED;
 		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			- win->player.direction_x * SPEED)] != '1')
+			- win->player.direction_x * SPEED_D)] != '1')
 			win->player.position_x -= win->player.direction_x * SPEED;
 	}
 	ft_putendl_fd("[Log] move_up_down", 2);
@@ -47,19 +56,19 @@ void	move_left_right(t_win *win, int keycode)
 	if (keycode == RIGHT)
 	{
 		if (win->map[(int)(win->player.position_y + win->ray.plane_y \
-			* SPEED)][(int)win->player.position_x] != '1')
+			* SPEED_D)][(int)win->player.position_x] != '1')
 			win->player.position_y += win->ray.plane_y * SPEED;
 		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			+ win->ray.plane_x * SPEED)] != '1')
+			+ win->ray.plane_x * SPEED_D)] != '1')
 			win->player.position_x += win->ray.plane_x * SPEED;
 	}
 	else if (keycode == LEFT)
 	{
 		if (win->map[(int)(win->player.position_y - win->ray.plane_y \
-			* SPEED)][(int)win->player.position_x] != '1')
+			* SPEED_D)][(int)win->player.position_x] != '1')
 			win->player.position_y -= win->ray.plane_y * SPEED;
 		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			- win->ray.plane_x * SPEED)] != '1')
+			- win->ray.plane_x * SPEED_D)] != '1')
 			win->player.position_x -= win->ray.plane_x * SPEED;
 	}
 	ft_putendl_fd("[Log] move_left_right", 2);
