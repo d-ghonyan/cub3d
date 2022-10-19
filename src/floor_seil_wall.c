@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/18 14:29:47 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 09:13:36 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ void	ft_calc_dist_height_wall(t_win *win)
 	else
 		win->wall.distance = win->ray.dda.shift_x \
 			- win->ray.dda.cell_distance_x;
-	if (win->wall.distance < 1)
-		win->wall.distance = 1;
 	win->wall.height = (int)(HEIGHT_WIN / win->wall.distance);
 	win->wall.start_pixel = HEIGHT_WIN / 2 - win->wall.height / 2;
+	if (win->wall.start_pixel < 0)
+		win->wall.start_pixel = 0;
 }
 
 void	ft_calc_row_wall(t_win *win)
@@ -97,16 +97,32 @@ void	ft_draw_wall(t_win *win)
 	double	interpolation;
 	int		color;
 	int		i;
+	int		r;
 
 	i = 0;
+	r = 0;
+	if (win->wall.height > HEIGHT_WIN)
+		r = win->wall.height - HEIGHT_WIN;
 	win->wall.row = 0;
 	interpolation = (double)64 / (double)win->wall.height;
 	while (i < win->wall.height)
 	{
-		color = ft_find_pixel(win, win->wall.row, \
-			(int)win->wall.column);
-		ft_put_pixel(win, win->ray.number, win->wall.start_pixel + i, color);
-		win->wall.row += interpolation;
+		if (i >= r)
+		{
+			color = ft_find_pixel(win, win->wall.row, \
+				(int)win->wall.column);
+			ft_put_pixel(win, win->ray.number, \
+				win->wall.start_pixel + i - r, color);
+			win->wall.row += interpolation;
+		}
+		else
+		{
+			// ft_putstr_fd("skip i:", 1);
+			// ft_putnbr_fd(i, 1);
+			// ft_putstr_fd("\n", 1);
+			win->wall.row += interpolation / 2;
+		}
 		++i;
+
 	}
 }

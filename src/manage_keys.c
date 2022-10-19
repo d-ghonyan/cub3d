@@ -6,12 +6,12 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/18 12:35:59 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:52:20 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#define SPEED 0.1
+#define SPEED 0.2
 #define ROT_SPEED 0.05
 
 void	move_up_down(t_win *win, int keycode)
