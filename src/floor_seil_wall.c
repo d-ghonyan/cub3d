@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 09:13:36 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 11:11:46 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	ft_draw_wall(t_win *win)
 	{
 		if (i >= r)
 		{
+			// if (i == 800)
+			// 	ft_putendl_fd("1", 1);
 			color = ft_find_pixel(win, win->wall.row, \
 				(int)win->wall.column);
 			ft_put_pixel(win, win->ray.number, \
@@ -117,12 +119,10 @@ void	ft_draw_wall(t_win *win)
 		}
 		else
 		{
-			// ft_putstr_fd("skip i:", 1);
-			// ft_putnbr_fd(i, 1);
-			// ft_putstr_fd("\n", 1);
-			win->wall.row += interpolation / 2;
+			// if (i == 800)
+			// 	ft_putendl_fd("2", 1);
+			win->wall.row += interpolation / 2.0;
 		}
 		++i;
-
 	}
 }

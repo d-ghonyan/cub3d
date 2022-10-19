@@ -6,18 +6,21 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/18 14:52:20 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 11:16:54 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#define SPEED 0.2
+#define SPEED 0.1
 #define ROT_SPEED 0.05
 
 void	move_up_down(t_win *win, int keycode)
 {
 	if (keycode == UP)
 	{
+		// printf("player pos y:%f x:%f\n", \
+		// 	win->player.position_y, win->player.position_x);
+		// if coordinates > 8.1 and < 8.9
 		if (win->map[(int)(win->player.position_y + win->player.direction_y \
 			* SPEED)][(int)win->player.position_x] != '1')
 			win->player.position_y += win->player.direction_y * SPEED;
@@ -27,6 +30,8 @@ void	move_up_down(t_win *win, int keycode)
 	}
 	else if (keycode == DOWN)
 	{
+		// printf("player pos y:%f x:%f\n", \
+		// 	win->player.position_y, win->player.position_x);
 		if (win->map[(int)(win->player.position_y - win->player.direction_y \
 			* SPEED)][(int)win->player.position_x] != '1')
 			win->player.position_y -= win->player.direction_y * SPEED;

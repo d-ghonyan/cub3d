@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/18 12:48:51 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 10:26:32 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, t_win *win)
 	// ft_putnbr_fd(keycode, 2);
 	// ft_putchar_fd('\n', 2);
 	ft_render(win);
-	// ft_putendl_fd("[Log] re render", 2);
+	ft_putendl_fd("[Log] re render", 2);
 	return (0);
 }
 
