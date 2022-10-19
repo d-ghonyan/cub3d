@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 12:20:51 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 13:38:27 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,8 @@ void	rotate_left(t_win *win);
 void	rotate_right(t_win *win);
 
 int		*ft_render(t_win *win);
+
+void	draw_minimap(t_win *win);
+int		have_newlines(char **map);
 
 #endif

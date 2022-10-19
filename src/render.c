@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/18 14:48:54 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 13:36:28 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int	*ft_render(t_win *win)
 		++win->ray.number;
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
+	draw_minimap(win);
 	return (0);
 }
