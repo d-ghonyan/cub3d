@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 13:38:27 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 17:54:07 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #  define WIDTH_WIN 1024
 #  define HEIGHT_WIN 800
 #  define M_KEY 109
+#  define N_KEY 108
 # else
 #  include <mlx.h>
 
@@ -38,6 +39,8 @@
 #  define ROTATE_RIGHT 124
 #  define WIDTH_WIN 1500
 #  define HEIGHT_WIN 1000
+#  define M_KEY 46
+#  define N_KEY 45
 
 # endif
 
@@ -118,7 +121,8 @@ typedef struct s_window
 	t_ray		ray;
 	t_wall		wall;
 	t_player	player;
-	int			mouse_flag;// if 1 - mouse_rotate is active [M button]
+	int			flag_mouse;// if 1 - mouse_rotate is active [N button]
+	int			flag_map;// if 1 - map is active [M button]
 }	t_win;
 
 /* my pixel_put, from 42docs */

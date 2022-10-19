@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/19 10:26:32 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/19 17:59:05 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@ int	key_hook(int keycode, t_win *win)
 		rotate_left(win);
 	else if (keycode == ROTATE_RIGHT)
 		rotate_right(win);
-	// ft_putstr_fd("[Log] key_hook: ", 2);
-	// ft_putnbr_fd(keycode, 2);
-	// ft_putchar_fd('\n', 2);
-	ft_render(win);
+	else if (keycode == M_KEY)
+		win->flag_map = 1 - win->flag_map - 0;
+	else if (keycode == N_KEY)
+		win->flag_mouse = 1 - win->flag_mouse - 0;
 	ft_putendl_fd("[Log] re render", 2);
+	ft_render(win);
 	return (0);
 }
 
 int	mouse_hook(int code, int x, int y, t_win *win)
 {
+	ft_putstr_fd("[Log] mouse_hook: ", 2);
+	ft_putnbr_fd(x, 2);
+	ft_putchar_fd('\n', 2);
 	(void)code;
-	(void)x;
 	(void)y;
 	(void)win;
 	return (0);
