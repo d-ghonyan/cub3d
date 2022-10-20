@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 17:54:07 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 13:06:37 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ typedef struct s_window
 	t_wall		wall;
 	t_player	player;
 	int			flag_mouse;// if 1 - mouse_rotate is active [N button]
-	int			flag_map;// if 1 - map is active [M button]
+	int			past_mouse_pos_x;// past mouse position, for rotate on x coordinate
+	int			flag_map;// if 1 -ß map is active [M button]
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -134,7 +135,7 @@ int		ft_vld_f(char *str);
 
 int		key_hook(int keycode, t_win *win);
 int		destroy_hook(t_win *win);
-int		mouse_hook(int code, int x, int y, t_win *win);
+int		mouse_hook(int x, int y, t_win *win);
 void	parse_map(int argc, char **argv, t_win *img);
 
 /* perror if syscall is true, putendl_fd if false and exit */

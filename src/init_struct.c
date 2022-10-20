@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 09:16:50 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 18:05:44 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 13:06:36 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,12 @@ void	ft_init_img(t_win *win)
 static void	mlx_hooks(t_win *win)
 {
 	win->flag_mouse = 0;
+	win->past_mouse_pos_x = 0;
 	win->flag_map = 0;
 	mlx_key_hook(win->win, &key_hook, win);
-	mlx_mouse_hook(win->win, &mouse_hook, win);
+	// mlx_mouse_hook(win->win, &mouse_hook, win);
 	mlx_hook(win->win, 17, 0, &destroy_hook, win);
+	mlx_hook(win->win, 6, 0, &mouse_hook, win);
 }
 
 void	ft_init_mlx(t_win *win)
