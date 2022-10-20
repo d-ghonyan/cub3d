@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 19:11:20 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 19:16:22 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,7 @@ static int	ft_find_pixel(t_win *win, int x, int y)
 		}
 	}
 	else
-	{
 		wall = (int *)win->door.addr;
-	}
 	return (wall[64 * x + y]);
 }
 
