@@ -14,19 +14,7 @@
 
 void	ft_multifree(void *m1, void *m2, void *m3)
 {
-	if (m1 != NULL)
-	{
-		free(m1);
-		m1 = NULL;
-	}
-	if (m2 != NULL)
-	{
-		free(m2);
-		m2 = NULL;
-	}
-	if (m3 != NULL)
-	{
-		free(m3);
-		m3 = NULL;
-	}
+	free(m1);
+	free(m2);
+	free(m3);
 }

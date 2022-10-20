@@ -25,11 +25,13 @@ LIBFT = libft/libft.a
 RM = rm -rf
 
 ifeq ($(UNAME_S), Linux)
-	CFLAGS = -Wall -Werror -Wextra -D LINUX -I./include -I../mlx_linux
+	CFLAGS = -g -Wall -Wextra -D LINUX -I./include -I../mlx_linux
+#-Werror
 	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
-	CFLAGS = -Wall -Werror -Wextra  -I./include
-	LINKLIB = -L libft/ -lft -lmlx -framework OpenGL -framework AppKit -lm
+	CFLAGS = -I./include -g -ggdb -fsanitize=address
+#-Werror -Wall -Wextra
+	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx
 endif
 
 all : $(NAME)
