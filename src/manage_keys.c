@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 13:24:25 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 14:40:37 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ void	move_up_down(t_win *win, int keycode)
 {
 	if (keycode == UP)
 	{
-		printf("player pos y:%f x:%f\n", \
-			win->player.position_y, win->player.position_x);
-		// if coordinates > 0.3
-		// if (0.3 <= (win->player.position_y - (int)(win->player.position_y)))
-		// {
-		// 	if (win->map[(int)(win->player.position_y + win->player.direction_y \
-		// 		* (SPEED))][(int)win->player.position_x] != '1')
-		// 		win->player.position_y += win->player.direction_y * SPEED;
-		// }
 		if (win->map[(int)(win->player.position_y + win->player.direction_y \
 			* (SPEED_D))][(int)win->player.position_x] != '1')
 		{
@@ -39,8 +30,6 @@ void	move_up_down(t_win *win, int keycode)
 	}
 	else if (keycode == DOWN)
 	{
-		// printf("player pos y:%f x:%f\n", \
-		// 	win->player.position_y, win->player.position_x);
 		if (win->map[(int)(win->player.position_y - win->player.direction_y \
 			* SPEED_D)][(int)win->player.position_x] != '1')
 			win->player.position_y -= win->player.direction_y * SPEED;
@@ -48,7 +37,7 @@ void	move_up_down(t_win *win, int keycode)
 			- win->player.direction_x * SPEED_D)] != '1')
 			win->player.position_x -= win->player.direction_x * SPEED;
 	}
-	ft_putendl_fd("[Log] move_up_down", 2);
+	// ft_putendl_fd("[Log] move_up_down", 2);
 }
 
 void	move_left_right(t_win *win, int keycode)
@@ -71,7 +60,7 @@ void	move_left_right(t_win *win, int keycode)
 			- win->ray.plane_x * SPEED_D)] != '1')
 			win->player.position_x -= win->ray.plane_x * SPEED;
 	}
-	ft_putendl_fd("[Log] move_left_right", 2);
+	// ft_putendl_fd("[Log] move_left_right", 2);
 }
 
 void	rotate_left(t_win *win)
