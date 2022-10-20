@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 10:28:10 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 18:11:38 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_win(t_win *win, int argc, char **argv)
 	ft_init_img(win);
 	ft_init_mlx(win);
 	parse_map(argc, argv, win);
+	ft_enter_doors(win);// enter 'd' in the map
 }
 
 int	main(int argc, char **argv)

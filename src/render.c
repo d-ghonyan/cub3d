@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 17:43:43 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 18:56:32 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ static void	ft_calc_shift_step(t_win *win)
 		win->ray.dda.shift_y = (win->player.map_position_y + \
 			1.0 - win->player.position_y) * win->ray.dda.cell_distance_y;
 	}
-	// ft_putendl_fd("ft_calc_shift_step", 1);
-	// ft_putendl_fd("shift_x: ", 1);
-	// ft_putnbr_fd(win->ray.dda.shift_x, 1);
-	// ft_putendl_fd("shift_y: ", 1);
-	// ft_putnbr_fd(win->ray.dda.shift_y, 1);
-	// ft_putendl_fd("", 2);
-	// ft_putendl_fd("---------------------", 2);
 }
 
 static void	ft_calc_ray_data(t_win *win)
@@ -86,8 +79,15 @@ static void	ft_calc_dda_dir(t_win *win)
 			win->ray.dda.direction_dda = 1;
 		}
 		if (win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == '1')
+			[win->player.map_position_x] == '1' \
+			|| win->map[win->player.map_position_y] \
+			[win->player.map_position_x] == 'd')
+		{
+			if (win->map[win->player.map_position_y] \
+			[win->player.map_position_x] == 'd')
+				win->ray.door = 1;
 			break ;
+		}
 	}
 }
 
@@ -98,15 +98,10 @@ int	*ft_render(t_win *win)
 	while (win->ray.number < WIDTH_WIN)
 	{
 		ft_calc_ray_data(win);
-		// ft_putendl_fd("ft_calc_ray_data", 1);
 		ft_calc_dda_dir(win);
-		// ft_putendl_fd("ft_calc_dda_dir", 1);
 		ft_calc_dist_height_wall(win);
-		// ft_putendl_fd("ft_calc_dist_height_wall", 1);
 		ft_calc_row_wall(win);
-		// ft_putendl_fd("ft_calc_row_wall", 1);
 		ft_draw_wall(win);
-		// ft_putendl_fd("ft_draw_wall", 1);
 		++win->ray.number;
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);

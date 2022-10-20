@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 13:06:37 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 19:11:21 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #  define HEIGHT_WIN 800
 #  define M_KEY 109
 #  define N_KEY 108
+
 # else
 #  include <mlx.h>
 
@@ -90,6 +91,7 @@ typedef struct s_ray
 	double	plane_x;
 	double	plane_y;
 	int		number;// number ray
+	int		door;// door flag 1 if ray touch to door, 0 if cycle break on the wall
 	t_dda	dda;
 }	t_ray;
 
@@ -108,6 +110,7 @@ typedef struct s_window
 	t_img		ea;
 	t_img		we;
 	t_img		so;
+	t_img		door;
 	int			f_color;
 	int			c_color;
 	char		**map;
@@ -123,7 +126,7 @@ typedef struct s_window
 	t_player	player;
 	int			flag_mouse;// if 1 - mouse_rotate is active [N button]
 	int			past_mouse_pos_x;// past mouse position, for rotate on x coordinate
-	int			flag_map;// if 1 -ß map is active [M button]
+	int			flag_map;// if 1 - map is active [M button]
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -173,4 +176,6 @@ int		*ft_render(t_win *win);
 void	draw_minimap(t_win *win);
 int		have_newlines(char **map);
 
+/*doors.c*/
+void	ft_enter_doors(t_win *win);
 #endif

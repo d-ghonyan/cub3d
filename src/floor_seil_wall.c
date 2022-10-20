@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/19 12:47:54 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 19:11:20 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,26 @@ static int	ft_find_pixel(t_win *win, int x, int y)
 {
 	int	*wall;
 
-	if (win->ray.dda.direction_dda)
+	if (win->ray.door == 0)
 	{
-		if (win->ray.direction_y >= 0)
-			wall = (int *)win->so.addr;
+		if (win->ray.dda.direction_dda)
+		{
+			if (win->ray.direction_y >= 0)
+				wall = (int *)win->so.addr;
+			else
+				wall = (int *)win->no.addr;
+		}
 		else
-			wall = (int *)win->no.addr;
+		{
+			if (win->ray.direction_x >= 0)
+				wall = (int *)win->ea.addr;
+			else
+				wall = (int *)win->we.addr;
+		}
 	}
 	else
 	{
-		if (win->ray.direction_x >= 0)
-			wall = (int *)win->ea.addr;
-		else
-			wall = (int *)win->we.addr;
+		wall = (int *)win->door.addr;
 	}
 	return (wall[64 * x + y]);
 }
@@ -111,4 +118,5 @@ void	ft_draw_wall(t_win *win)
 		win->wall.row += interpolation;
 		++i;
 	}
+	win->ray.door = 0;
 }

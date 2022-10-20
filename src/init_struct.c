@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 09:16:50 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 13:06:36 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 18:53:36 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_init_dda_ray(t_win *win)
 	win->ray.plane_x = 0.0;
 	win->ray.plane_y = 0.0;
 	win->ray.number = 0;
+	win->ray.door = 0;
 	win->ray.dda.direction_dda = 0;
 	win->ray.dda.cell_distance_x = 0;
 	win->ray.dda.cell_distance_y = 0;
@@ -35,7 +36,6 @@ static void	ft_init_wall_player(t_win *win)
 	win->wall.height = 0;
 	win->wall.start_pixel = 0;
 	win->wall.distance = 0.0;
-
 	win->player.map_position_x = 0;
 	win->player.map_position_y = 0;
 	win->player.position_x = 0.0;
