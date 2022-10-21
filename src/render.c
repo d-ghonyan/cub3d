@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 14:00:40 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 18:56:32 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,19 @@ static void	ft_calc_shift_step(t_win *win)
 		win->ray.dda.shift_y = (win->player.map_position_y + \
 			1.0 - win->player.position_y) * win->ray.dda.cell_distance_y;
 	}
-	// need map_position from parsing utils
 }
 
 static void	ft_calc_ray_data(t_win *win)
 {
-	double	ray_g;
+	double	field_point;
 
 	win->player.map_position_x = (int)win->player.position_x;
-	win->player.map_position_y = (int)win->player.position_y;//eject
-	ray_g = 2.0 * win->ray.number / WIDTH_WIN - 1.0;
+	win->player.map_position_y = (int)win->player.position_y;
+	field_point = 2.0 * win->ray.number / WIDTH_WIN - 1.0;
 	win->ray.direction_x = win->player.direction_x + \
-		win->ray.plane_x * ray_g;
+		win->ray.plane_x * field_point;
 	win->ray.direction_y = win->player.direction_y + \
-		win->ray.plane_y * ray_g;
+		win->ray.plane_y * field_point;
 	win->ray.dda.cell_distance_x = fabs(1 / win->ray.direction_x);
 	win->ray.dda.cell_distance_y = fabs(1 / win->ray.direction_y);
 	ft_calc_shift_step(win);
@@ -74,16 +73,22 @@ static void	ft_calc_dda_dir(t_win *win)
 			win->ray.dda.direction_dda = 1;
 		}
 		if (win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == '1')
+			[win->player.map_position_x] == '1' \
+			|| win->map[win->player.map_position_y] \
+			[win->player.map_position_x] == 'd')
+		{
+			if (win->map[win->player.map_position_y] \
+			[win->player.map_position_x] == 'd')
+				win->ray.door = 1;
 			break ;
-		// ft_putendl_fd("dda", 1);
+		}
 	}
 }
 
 int	*ft_render(t_win *win)
 {
 	win->ray.number = 0;
-	drow_floor_and_ceil(win);
+	draw_floor_and_ceil(win);
 	while (win->ray.number < WIDTH_WIN)
 	{
 		ft_calc_ray_data(win);
@@ -94,5 +99,7 @@ int	*ft_render(t_win *win)
 		++win->ray.number;
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
+	if (win->flag_map)
+		draw_minimap(win);
 	return (0);
 }

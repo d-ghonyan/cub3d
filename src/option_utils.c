@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   option_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/14 18:50:59 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 20:06:59 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int	is_in_check(char *s, char *check[6])
 
 void	store_xpm(t_img *img, void *mlx, char *name)
 {
+	printf("name storexpm : %s\n", name);
 	img->fd = open(name, O_RDONLY);
 	if (img->fd < 0)
 		file_error(name);
 	img->img = mlx_xpm_file_to_image(mlx, name, &(img->w), &(img->h));
-	if (!img->img)
+	if (!img->img || img->w != 64 || img->h != 64)
 	{
 		close(img->fd);
 		file_error(name);

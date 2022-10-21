@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 13:20:21 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 13:07:14 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,33 @@ int	key_hook(int keycode, t_win *win)
 {
 	if (keycode == ESC)
 		destroy_hook(win);
+	else if (keycode == UP || keycode == DOWN)
+		move_up_down(win, keycode);
+	else if (keycode == LEFT || keycode == RIGHT)
+		move_left_right(win, keycode);
+	else if (keycode == ROTATE_LEFT)
+		rotate_left(win);
+	else if (keycode == ROTATE_RIGHT)
+		rotate_right(win);
+	else if (keycode == M_KEY)
+		win->flag_map = 1 - win->flag_map - 0;
+	else if (keycode == N_KEY)
+		win->flag_mouse = 1 - win->flag_mouse - 0;
 	ft_render(win);
-	ft_putendl_fd("[Log] re render", 2);
 	return (0);
 }
 
-int	mouse_hook(int code, int x, int y, t_win *win)
+int	mouse_hook(int x, int y, t_win *win)
 {
-	(void)code;
-	(void)x;
-	(void)y;
-	(void)win;
+	if (win->flag_mouse && ((x > 0 && y > 0)
+			&& (x <= WIDTH_WIN && y <= HEIGHT_WIN)))
+	{
+		if (win->past_mouse_pos_x > x)
+			key_hook(ROTATE_LEFT, win);
+		if (win->past_mouse_pos_x < x)
+			key_hook(ROTATE_RIGHT, win);
+		win->past_mouse_pos_x = x;
+	}
 	return (0);
 }
 

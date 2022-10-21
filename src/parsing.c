@@ -12,19 +12,26 @@
 
 #include "cub3d.h"
 
-int	max_len(char **map)
+void	init_player_dir(t_win *win, char dir, int x, int y)
 {
-	int	i;
-	int	max;
-
-	i = 0;
-	max = ft_strlen(map[0]);
-	while (map[++i])
+	win->player.position_x = y + 0.5;
+	win->player.position_y = x + 0.5;
+	win->player.pos_y_mini = x;
+	win->player.pos_y_mini = y;
+	if (dir == 'N')
 	{
-		if (max < ft_strlen(map[i]))
-			max = ft_strlen(map[i]);
+		win->player.direction_x = 0.0;
+		win->player.direction_y = -1.0;
+		win->ray.plane_x = 0.70;
+		win->ray.plane_y = 0.0;
 	}
-	return (max);
+	else if (dir == 'S')
+	{
+		win->player.direction_x = 0.0;
+		win->player.direction_y = 1.0;
+		win->ray.plane_x = -0.70;
+		win->ray.plane_y = 0.0;
+	}
 }
 
 int	valid(char c, int check_surrounded)
@@ -42,7 +49,7 @@ void	parse_map(int argc, char **argv, t_win *win)
 	char	**map;
 	char	**saved_map;
 
-	if (wrong_extension(argv[1], ".cub"))
+	if (argc == 1 || wrong_extension(argv[1], ".cub"))
 		error ("Wrong arguments", 0);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

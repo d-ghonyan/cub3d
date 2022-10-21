@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 09:16:50 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 13:46:19 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 18:53:36 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_init_dda_ray(t_win *win)
 	win->ray.plane_x = 0.0;
 	win->ray.plane_y = 0.0;
 	win->ray.number = 0;
+	win->ray.door = 0;
 	win->ray.dda.direction_dda = 0;
 	win->ray.dda.cell_distance_x = 0;
 	win->ray.dda.cell_distance_y = 0;
@@ -37,6 +38,8 @@ static void	ft_init_wall_player(t_win *win)
 	win->wall.distance = 0.0;
 	win->player.map_position_x = 0;
 	win->player.map_position_y = 0;
+	win->player.pos_x_mini = 0;
+	win->player.pos_y_mini = 0;
 	win->player.position_x = 0.0;
 	win->player.position_y = 0.0;
 	win->player.direction_x = 0.0;
@@ -71,21 +74,23 @@ void	ft_init_img(t_win *win)
 
 static void	mlx_hooks(t_win *win)
 {
-	mlx_key_hook(win->win, &key_hook, win);
-	mlx_mouse_hook(win->win, &mouse_hook, win);
+	win->flag_mouse = 0;
+	win->past_mouse_pos_x = 0;
+	win->flag_map = 0;
 	mlx_hook(win->win, 17, 0, &destroy_hook, win);
+	mlx_hook(win->win, 2, 0, &key_hook, win);
+	mlx_hook(win->win, 6, 0, &mouse_hook, win);
 }
 
 void	ft_init_mlx(t_win *win)
 {
-	win->mlx = mlx_init();
-	if (!win->mlx)
-		error("MLX Error", 0);
+	win->map_len = have_newlines(win->map);
 	win->win = mlx_new_window(win->mlx, WIDTH_WIN, HEIGHT_WIN, "CUB3D");
 	if (!win->win)
 		error("Window Error", 0);
 	win->img = mlx_new_image(win->mlx, WIDTH_WIN, HEIGHT_WIN);
-	win->img_mini = mlx_new_image(win->mlx, max_len(win->map) * SIDE, win->map_len * SIDE);
+	win->img_mini = mlx_new_image(win->mlx,
+			max_len(win->map) * SIDE, win->map_len * SIDE);
 	if (!win->img || !win->img_mini)
 		error("IMG Error", 0);
 	win->addr = mlx_get_data_addr(win->img,
@@ -95,6 +100,6 @@ void	ft_init_mlx(t_win *win)
 			&win->bits_per_pixel_mini, &win->line_length_mini,
 			&win->endian_mini);
 	if (!win->addr || !win->addr_mini)
-		error("IMG Fill(bpp etc) Error", 0);
+		error("IMG Fill Error", 0);
 	mlx_hooks(win);
 }

@@ -1,5 +1,6 @@
 {
-	"files.associations": {
-		"cub3d.h": "c"
-	}
+	"workbench.panel.defaultLocation": "right",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)"
 }

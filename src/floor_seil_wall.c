@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   floor_seil_wall.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/15 14:01:19 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 19:16:22 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	drow_floor_and_ceil(t_win *win)
+void	draw_floor_and_ceil(t_win *win)
 {
 	int	i;
 	int	j;
@@ -50,6 +50,8 @@ void	ft_calc_dist_height_wall(t_win *win)
 			- win->ray.dda.cell_distance_x;
 	win->wall.height = (int)(HEIGHT_WIN / win->wall.distance);
 	win->wall.start_pixel = HEIGHT_WIN / 2 - win->wall.height / 2;
+	if (win->wall.start_pixel < 0)
+		win->wall.start_pixel = 0;
 }
 
 void	ft_calc_row_wall(t_win *win)
@@ -58,58 +60,38 @@ void	ft_calc_row_wall(t_win *win)
 
 	if (win->ray.dda.direction_dda)
 		column = win->player.position_x + win->wall.distance * \
-        win->ray.direction_x;
+		win->ray.direction_x;
 	else
 		column = win->player.position_y + win->wall.distance * \
-        win->ray.direction_y;
+		win->ray.direction_y;
 	column -= floor(column);
-	win->wall.row = (int)(column * 64);
-	if ((0 == win->ray.dda.direction_dda && win->ray.direction_x > 0)
-		|| (win->ray.dda.direction_dda && win->ray.direction_y < 0))
-		win->wall.row = 64 - win->wall.row - 1;
+	win->wall.column = (int)(column * 64);
 }
 
 static int	ft_find_pixel(t_win *win, int x, int y)
 {
 	int	*wall;
 
-	if (win->ray.dda.direction_dda)
+	if (win->ray.door == 0)
 	{
-		if (win->ray.direction_y >= 0)
-			wall = (int *)win->so.addr;
+		if (win->ray.dda.direction_dda)
+		{
+			if (win->ray.direction_y >= 0)
+				wall = (int *)win->so.addr;
+			else
+				wall = (int *)win->no.addr;
+		}
 		else
-			wall = (int *)win->no.addr;
+		{
+			if (win->ray.direction_x >= 0)
+				wall = (int *)win->ea.addr;
+			else
+				wall = (int *)win->we.addr;
+		}
 	}
 	else
-	{
-		if (win->ray.direction_x >= 0)
-			wall = (int *)win->ea.addr;
-		else
-			wall = (int *)win->we.addr;
-	}
-	// if (win->ray.number == 0 || win->ray.number == 1 \
-	// 	|| win->ray.number == 10 || win->ray.number == 40 \
-	// 	|| win->ray.number == 100 || win->ray.number == 400 \
-	// 	|| win->ray.number == 1000 || win->ray.number == 600)
-	// {
-	// 	ft_putstr_fd("---------------------------------------\n", 1);
-	// 	ft_putstr_fd("number = ", 1);
-	// 	ft_putnbr(win->ray.number, 1);
-	// 	ft_putendl_fd("", 1);
-	// 	printf("distance wall: %f\n", win->wall.distance);
-	// 	ft_putendl_fd("", 1);
-	// 	printf("height wall: %d\n", win->wall.height);
-	// 	ft_putendl_fd("", 1);
-	// 	printf("start pixel wall: %d\n", win->wall.start_pixel);
-	// 	ft_putendl_fd("", 1);
-	// 	ft_putstr_fd("x wall: ", 1);
-	// 	ft_putnbr(win->wall.x, 1);
-	// 	ft_putendl_fd("", 1);
-	// 	ft_putstr_fd("y wall: %f\n", win->wall.y);
-	// 	ft_putendl_fd("", 1);
-	// 	ft_putendl_fd("---------------------------------------", 1);
-	// }
-	return (wall[64 * y + x]);
+		wall = (int *)win->door.addr;
+	return (wall[64 * x + y]);
 }
 
 void	ft_draw_wall(t_win *win)
@@ -119,15 +101,18 @@ void	ft_draw_wall(t_win *win)
 	int		i;
 
 	i = 0;
-	win->wall.column = 0;
+	win->wall.row = 0;
+	if (win->wall.distance < 1)
+		win->wall.row = (64.0 - 64.0 * win->wall.distance) / 2;
 	interpolation = (double)64 / (double)win->wall.height;
-	while (i < win->wall.height)
+	while (i < win->wall.height && i < HEIGHT_WIN)
 	{
 		color = ft_find_pixel(win, win->wall.row, \
 			(int)win->wall.column);
-		ft_put_pixel(win, win->ray.number, win->wall.start_pixel + i, color);
-		win->wall.column += interpolation;
+		ft_put_pixel(win, win->ray.number, \
+			win->wall.start_pixel + i, color);
+		win->wall.row += interpolation;
 		++i;
 	}
-	// ft_putnbr_fd(color, 1);
+	win->ray.door = 0;
 }

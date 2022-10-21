@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 11:15:40 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 20:09:17 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* so many things to change */
 
 #include "cub3d.h"
 
@@ -16,7 +18,9 @@ int	check_characters(t_win *win, char **map, int len)
 {
 	int	i;
 	int	j;
+	int	player;
 
+	player = 0;
 	i = -1;
 	while (++i < len)
 	{
@@ -25,12 +29,15 @@ int	check_characters(t_win *win, char **map, int len)
 		{
 			if (map[i][j] == 'W' || map[i][j] == 'E'
 				|| map[i][j] == 'N' || map[i][j] == 'S')
+			{
+				player++;
 				ft_set_player(win, map[i][j], i, j);
+			}
 			if (!valid(map[i][j], 0))
 				return (0);
 		}
 	}
-	return (1);
+	return (player == 1);
 }
 
 int	have_newlines(char **map)
@@ -106,7 +113,6 @@ int	validate_map(t_win *win, char **map)
 	len = have_newlines(map);
 	if (len < 0)
 		error("Wrong map", 0);
-	win->map_len = len;
 	if (!check_characters(win, map, len))
 		error("Something's wrong with characters...", 0);
 	while (++i < len)
