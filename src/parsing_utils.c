@@ -16,7 +16,8 @@ void	ft_set_player(t_win *win, char dir, int x, int y)
 {
 	win->player.position_x = y + 0.5;
 	win->player.position_y = x + 0.5;
-	// win->map[x][y] = '0';
+	win->player.pos_y_mini = x;
+	win->player.pos_y_mini = y;
 	if (dir == 'N')
 	{
 		win->player.direction_x = 0.0;

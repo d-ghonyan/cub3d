@@ -36,6 +36,8 @@
 
 # endif
 
+# define SIDE 12
+
 # include "libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -102,15 +104,22 @@ typedef struct s_window
 	t_img		so;
 	int			f_color;
 	int			c_color;
-	int			map_len;
 	char		**map;
 	void		*mlx;
 	void		*win;
 	void		*img;
+	void		*img_mini;
 	char		*addr;
+	char		*addr_mini;
+	int			pos_x_mini;
+	int			pos_y_mini;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			map_len;
+	int			bits_per_pixel_mini;
+	int			line_length_mini;
+	int			endian_mini;
 	t_ray		ray;
 	t_wall		wall;
 	t_player	player;
@@ -153,5 +162,6 @@ void	ft_calc_row_wall(t_win *win);
 void	ft_draw_wall(t_win *win);
 
 int		*ft_render(t_win *win);
+int		max_len(char **map);
 
 #endif

@@ -78,24 +78,23 @@ static void	mlx_hooks(t_win *win)
 
 void	ft_init_mlx(t_win *win)
 {
-	win->map = NULL;
-	win->mlx = NULL;
-	win->win = NULL;
-	win->img = NULL;
-	win->addr = NULL;
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		error("MLX Error", 0);
 	win->win = mlx_new_window(win->mlx, WIDTH_WIN, HEIGHT_WIN, "CUB3D");
-	if (NULL == win->win)
+	if (!win->win)
 		error("Window Error", 0);
 	win->img = mlx_new_image(win->mlx, WIDTH_WIN, HEIGHT_WIN);
-	if (!win->img)
+	win->img_mini = mlx_new_image(win->mlx, max_len(win->map) * SIDE, win->map_len * SIDE);
+	if (!win->img || !win->img_mini)
 		error("IMG Error", 0);
 	win->addr = mlx_get_data_addr(win->img,
 			&win->bits_per_pixel, &win->line_length,
 			&win->endian);
-	if (!win->addr)
+	win->addr_mini = mlx_get_data_addr(win->img_mini,
+			&win->bits_per_pixel_mini, &win->line_length_mini,
+			&win->endian_mini);
+	if (!win->addr || !win->addr_mini)
 		error("IMG Fill(bpp etc) Error", 0);
 	mlx_hooks(win);
 }

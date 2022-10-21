@@ -29,9 +29,9 @@ ifeq ($(UNAME_S), Linux)
 #-Werror
 	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
-	CFLAGS = -I./include -g -ggdb3 -fsanitize=address -I./libft
+	CFLAGS = -I./include -g -ggdb3 -fsanitize=address -I./libft -I../mlx
 #-Werror -Wall -Wextra
-	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx
+	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx -L../mlx
 endif
 
 all : $(NAME)

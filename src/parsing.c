@@ -12,6 +12,21 @@
 
 #include "cub3d.h"
 
+int	max_len(char **map)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = ft_strlen(map[0]);
+	while (map[++i])
+	{
+		if (max < ft_strlen(map[i]))
+			max = ft_strlen(map[i]);
+	}
+	return (max);
+}
+
 int	valid(char c, int check_surrounded)
 {
 	if (check_surrounded)
