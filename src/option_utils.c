@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/20 18:18:38 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/20 20:06:59 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	store_xpm(t_img *img, void *mlx, char *name)
 	if (img->fd < 0)
 		file_error(name);
 	img->img = mlx_xpm_file_to_image(mlx, name, &(img->w), &(img->h));
-	if (!img->img)
+	if (!img->img || img->w != 64 || img->h != 64)
 	{
 		close(img->fd);
 		file_error(name);
