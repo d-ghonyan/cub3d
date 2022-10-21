@@ -14,7 +14,7 @@ UNAME_S = $(shell uname -s)
 
 NAME =	cub3d
 
-SRCS =	$(wildcard src/*.c)#src/main.c	src/drowutils.c	src/float_utils.c
+SRCS =	$(wildcard src/*.c)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -29,9 +29,9 @@ ifeq ($(UNAME_S), Linux)
 #-Werror
 	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
-	CFLAGS = -I./include -g -ggdb3 -fsanitize=address -I./libft -I../mlx
+	CFLAGS = -I./include -g -ggdb3 -fsanitize=address -I./libft
 #-Werror -Wall -Wextra
-	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx -L../mlx
+	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx
 endif
 
 all : $(NAME)
