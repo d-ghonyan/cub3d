@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:54:23 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/06/06 17:12:25 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:33:28 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ size_t	ft_putspl_fd(char **split, int fd)
 	len = 0;
 	while (split[i])
 	{
+		len += write(fd, ft_itoa(i), 2);
+		len += write(fd, ": ", 1);
 		len += write(fd, split[i], ft_strlen(split[i]));
 		len += write(fd, "\n", 1);
 		i++;

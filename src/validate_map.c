@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/20 20:09:17 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:48:28 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	check_characters(t_win *win, char **map, int len)
 			{
 				player++;
 				ft_set_player(win, map[i][j], i, j);
+				map[i][j] = '0';
+
 			}
 			if (!valid(map[i][j], 0))
 				return (0);

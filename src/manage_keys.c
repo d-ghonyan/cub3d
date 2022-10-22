@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:17:59 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 20:08:36 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/21 15:05:44 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,28 @@
 
 void	move_up_down(t_win *win, int keycode)
 {
+	char	tmp;
+
 	if (keycode == UP)
 	{
-		if (win->map[(int)(win->player.position_y + win->player.direction_y \
-			* (SPEED_D))][(int)win->player.position_x] != '1')
-		{
+		tmp = win->map[(int)(win->player.position_y + win->player.direction_y \
+			* (SPEED_D))][(int)win->player.position_x];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_y += win->player.direction_y * SPEED;
-		}
-		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			+ win->player.direction_x * SPEED_D)] != '1')
+		tmp = win->map[(int)win->player.position_y] \
+		[(int)(win->player.position_x + win->player.direction_x * SPEED_D)];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_x += win->player.direction_x * SPEED;
 	}
 	else if (keycode == DOWN)
 	{
-		if (win->map[(int)(win->player.position_y - win->player.direction_y \
-			* SPEED_D)][(int)win->player.position_x] != '1')
+		tmp = win->map[(int)(win->player.position_y - win->player.direction_y \
+			* SPEED_D)][(int)win->player.position_x];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_y -= win->player.direction_y * SPEED;
-		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			- win->player.direction_x * SPEED_D)] != '1')
+		tmp = win->map[(int)win->player.position_y] \
+		[(int)(win->player.position_x - win->player.direction_x * SPEED_D)];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_x -= win->player.direction_x * SPEED;
 	}
 	// ft_putendl_fd("[Log] move_up_down", 2);
@@ -42,22 +46,28 @@ void	move_up_down(t_win *win, int keycode)
 
 void	move_left_right(t_win *win, int keycode)
 {
+	int		tmp;
+
 	if (keycode == RIGHT)
 	{
-		if (win->map[(int)(win->player.position_y + win->ray.plane_y \
-			* SPEED_D)][(int)win->player.position_x] != '1')
+		tmp = win->map[(int)(win->player.position_y + win->ray.plane_y \
+			* SPEED_D)][(int)win->player.position_x];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_y += win->ray.plane_y * SPEED;
-		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			+ win->ray.plane_x * SPEED_D)] != '1')
+		tmp = win->map[(int)win->player.position_y] \
+		[(int)(win->player.position_x + win->ray.plane_x * SPEED_D)];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_x += win->ray.plane_x * SPEED;
 	}
 	else if (keycode == LEFT)
 	{
-		if (win->map[(int)(win->player.position_y - win->ray.plane_y \
-			* SPEED_D)][(int)win->player.position_x] != '1')
+		tmp = win->map[(int)(win->player.position_y - win->ray.plane_y \
+			* SPEED_D)][(int)win->player.position_x];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_y -= win->ray.plane_y * SPEED;
-		if (win->map[(int)win->player.position_y][(int)(win->player.position_x \
-			- win->ray.plane_x * SPEED_D)] != '1')
+		tmp = win->map[(int)win->player.position_y] \
+		[(int)(win->player.position_x - win->ray.plane_x * SPEED_D)];
+		if (tmp != '1' && tmp != CLOSE_DOOR)
 			win->player.position_x -= win->ray.plane_x * SPEED;
 	}
 	// ft_putendl_fd("[Log] move_left_right", 2);

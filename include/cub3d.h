@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 19:11:21 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/21 16:13:33 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 #  define HEIGHT_WIN 800
 #  define M_KEY 109
 #  define N_KEY 108
+#  define SPACE_KEY 32
+
+#  define CLOSE_DOOR 'd'
+#  define OPEN_DOOR 'D'
 
 # else
 #  include <mlx.h>
@@ -42,6 +46,10 @@
 #  define HEIGHT_WIN 1000
 #  define M_KEY 46
 #  define N_KEY 45
+#  define SPACE_KEY 48
+
+#  define CLOSE_DOOR 'd'
+#  define OPEN_DOOR 'D'
 
 # endif
 
@@ -141,6 +149,10 @@ int		destroy_hook(t_win *win);
 int		mouse_hook(int x, int y, t_win *win);
 void	parse_map(int argc, char **argv, t_win *img);
 
+/*doors.c*/
+void	ft_enter_doors(t_win *win);
+void	ft_open_close_door(t_win *win);
+
 /* perror if syscall is true, putendl_fd if false and exit */
 void	error(char *msg, int syscall);
 int		wrong_map(t_list *map);
@@ -153,6 +165,7 @@ int		space_or_nl(char *s);
 int		valid(char c, int check_surrounded);
 int		ft_strlen_map(char *s);
 char	**convert_tabs(char **map, char **saved);
+void	store_xpm(t_img *img, void *mlx, char *name);
 
 /*init struct.c*/
 void	ft_init_img(t_win *win);
@@ -176,6 +189,5 @@ int		*ft_render(t_win *win);
 void	draw_minimap(t_win *win);
 int		have_newlines(char **map);
 
-/*doors.c*/
-void	ft_enter_doors(t_win *win);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/20 18:56:32 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/21 16:07:35 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ static void	ft_calc_dda_dir(t_win *win)
 		if (win->map[win->player.map_position_y] \
 			[win->player.map_position_x] == '1' \
 			|| win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == 'd')
+			[win->player.map_position_x] == CLOSE_DOOR)
 		{
 			if (win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == 'd')
+			[win->player.map_position_x] == CLOSE_DOOR)
 				win->ray.door = 1;
 			break ;
 		}

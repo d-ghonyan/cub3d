@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/16 13:08:22 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:44:48 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_set_player(t_win *win, char dir, int x, int y)
 {
 	win->player.position_x = y + 0.5;
 	win->player.position_y = x + 0.5;
-	// win->map[x][y] = '0';
 	if (dir == 'N')
 	{
 		win->player.direction_x = 0.0;
