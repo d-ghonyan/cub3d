@@ -29,9 +29,6 @@
 #  define N_KEY 108
 #  define SPACE_KEY 32
 
-#  define CLOSE_DOOR 'd'
-#  define OPEN_DOOR 'D'
-
 # else
 #  include <mlx.h>
 
@@ -48,10 +45,14 @@
 #  define N_KEY 45
 #  define SPACE_KEY 48
 
-#  define CLOSE_DOOR 'd'
-#  define OPEN_DOOR 'D'
-
 # endif
+
+# define CLOSE_DOOR 'd'
+# define OPEN_DOOR 'D'
+
+# define PLAYER "minimap/player.xpm"
+# define WALL "minimap/wall.xpm"
+# define DOOR "minimap/door.xpm"
 
 # include "../libft/libft.h"
 # include <stdio.h>
@@ -83,13 +84,13 @@ typedef struct s_player
 
 typedef struct s_dda
 {
-	int		direction_dda;// if we go to the y, is 1, if to the x, is 0
-	double	cell_distance_x;//delta
-	double	cell_distance_y;// cell size
+	int		direction_dda;
+	double	cell_distance_x;
+	double	cell_distance_y;
 	int		step_x;
 	int		step_y;
-	double	shift_x;// distance to the nearest intersection
-	double	shift_y;//side
+	double	shift_x;
+	double	shift_y;
 }	t_dda;
 
 typedef struct s_ray
@@ -98,15 +99,15 @@ typedef struct s_ray
 	double	direction_y;
 	double	plane_x;
 	double	plane_y;
-	int		number;// number ray
-	int		door;// door flag 1 if ray touch to door, 0 if cycle break on the wall
+	int		number;
+	int		door;
 	t_dda	dda;
 }	t_ray;
 
 typedef struct s_wall
 {
-	double	row;//x
-	double	column;//y
+	double	row;
+	double	column;
 	int		height;
 	int		start_pixel;
 	double	distance;
@@ -118,6 +119,10 @@ typedef struct s_window
 	t_img		ea;
 	t_img		we;
 	t_img		so;
+	t_img		player_mini;
+	t_img		wall_mini;
+	t_img		sprite_mini;
+	t_img		door_mini;
 	t_img		door;
 	int			f_color;
 	int			c_color;
@@ -132,9 +137,9 @@ typedef struct s_window
 	t_ray		ray;
 	t_wall		wall;
 	t_player	player;
-	int			flag_mouse;// if 1 - mouse_rotate is active [N button]
-	int			past_mouse_pos_x;// past mouse position, for rotate on x coordinate
-	int			flag_map;// if 1 - map is active [M button]
+	int			flag_mouse;
+	int			past_mouse_pos_x;
+	int			flag_map;
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -188,6 +193,6 @@ int		*ft_render(t_win *win);
 
 void	draw_minimap(t_win *win);
 int		have_newlines(char **map);
-
+void	set_position(t_win *win, int x, int y, char dir);
 
 #endif

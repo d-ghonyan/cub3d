@@ -42,16 +42,10 @@ static void	ft_calc_shift_step(t_win *win)
 
 static void	ft_calc_ray_data(t_win *win)
 {
-	double	field_point;// -1 to 1 field_point
+	double	field_point;
 
 	win->player.map_position_x = (int)win->player.position_x;
 	win->player.map_position_y = (int)win->player.position_y;
-	// ft_putendl_fd("-------map_pos-------", 2);
-	// ft_putendl_fd("map_pos_x: ", 2);
-	// ft_putnbr_fd(win->player.map_position_x, 2);
-	// ft_putendl_fd("map_pos_y: ", 2);
-	// ft_putnbr_fd(win->player.map_position_y, 2);
-	// ft_putendl_fd("", 2);
 	field_point = 2.0 * win->ray.number / WIDTH_WIN - 1.0;
 	win->ray.direction_x = win->player.direction_x + \
 		win->ray.plane_x * field_point;

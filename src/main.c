@@ -17,7 +17,7 @@ static void	init_win(t_win *win, int argc, char **argv)
 	ft_init_img(win);
 	ft_init_mlx(win);
 	parse_map(argc, argv, win);
-	ft_enter_doors(win);// enter 'd' in the map
+	ft_enter_doors(win);
 }
 
 int	main(int argc, char **argv)

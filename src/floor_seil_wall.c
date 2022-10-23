@@ -60,10 +60,10 @@ void	ft_calc_row_wall(t_win *win)
 
 	if (win->ray.dda.direction_dda)
 		column = win->player.position_x + win->wall.distance * \
-        win->ray.direction_x;
+		win->ray.direction_x;
 	else
 		column = win->player.position_y + win->wall.distance * \
-        win->ray.direction_y;
+		win->ray.direction_y;
 	column -= floor(column);
 	win->wall.column = (int)(column * 64);
 }

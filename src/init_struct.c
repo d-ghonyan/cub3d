@@ -75,18 +75,14 @@ static void	mlx_hooks(t_win *win)
 	win->flag_mouse = 0;
 	win->past_mouse_pos_x = 0;
 	win->flag_map = 0;
-	mlx_key_hook(win->win, &key_hook, win);
 	mlx_hook(win->win, 17, 0, &destroy_hook, win);
+	mlx_hook(win->win, 2, 0, &key_hook, win);
+	mlx_key_hook(win->win, &key_hook, win);
 	mlx_hook(win->win, 6, 0, &mouse_hook, win);
 }
 
 void	ft_init_mlx(t_win *win)
 {
-	win->map = NULL;
-	win->mlx = NULL;
-	win->win = NULL;
-	win->img = NULL;
-	win->addr = NULL;
 	win->mlx = mlx_init();
 	if (!win->mlx)
 		error("MLX Error", 0);
@@ -94,8 +90,15 @@ void	ft_init_mlx(t_win *win)
 	if (NULL == win->win)
 		error("Window Error", 0);
 	win->img = mlx_new_image(win->mlx, WIDTH_WIN, HEIGHT_WIN);
-	if (!win->img)
-		error("IMG Error", 0);
+	win->player_mini.img = mlx_xpm_file_to_image(win->mlx, PLAYER,
+			&win->player_mini.w, &win->player_mini.h);
+	win->wall_mini.img = mlx_xpm_file_to_image(win->mlx, WALL,
+			&win->wall_mini.w, &win->wall_mini.h);
+	win->door_mini.img = mlx_xpm_file_to_image(win->mlx, DOOR,
+			&win->door_mini.w, &win->door_mini.h);
+	if (!win->img || !win->player_mini.img
+		|| !win->door_mini.img || !win->wall_mini.img)
+		error("IMG Error", 1);
 	win->addr = mlx_get_data_addr(win->img,
 			&win->bits_per_pixel, &win->line_length,
 			&win->endian);
@@ -103,3 +106,6 @@ void	ft_init_mlx(t_win *win)
 		error("IMG Fill(bpp etc) Error", 0);
 	mlx_hooks(win);
 }
+
+// win->player_mini = mlx_xpm_file_to_image(win->mlx, PLAYER,
+// 	&win->player_mini.w, &win->player_mini.h);

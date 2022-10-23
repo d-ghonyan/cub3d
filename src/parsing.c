@@ -12,6 +12,26 @@
 
 #include "cub3d.h"
 
+void	set_position(t_win *win, int x, int y, char dir)
+{
+	win->player.position_x = y + 0.5;
+	win->player.position_y = x + 0.5;
+	if (dir == 'N')
+	{
+		win->player.direction_x = 0.0;
+		win->player.direction_y = -1.0;
+		win->ray.plane_x = 0.70;
+		win->ray.plane_y = 0.0;
+	}
+	else if (dir == 'S')
+	{
+		win->player.direction_x = 0.0;
+		win->player.direction_y = 1.0;
+		win->ray.plane_x = -0.70;
+		win->ray.plane_y = 0.0;
+	}
+}
+
 int	valid(char c, int check_surrounded)
 {
 	if (check_surrounded)

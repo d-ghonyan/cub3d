@@ -28,7 +28,6 @@ int	is_in_check(char *s, char *check[6])
 
 void	store_xpm(t_img *img, void *mlx, char *name)
 {
-	printf("name storexpm : %s\n", name);
 	img->fd = open(name, O_RDONLY);
 	if (img->fd < 0)
 		file_error(name);

@@ -12,52 +12,53 @@
 
 #include "cub3d.h"
 
+int	ft_strlen_int(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		;
+	return (i);
+}
+
 int	max_len(char **map)
 {
 	int	i;
 	int	max;
 
 	i = 0;
-	max = ft_strlen(map[0]);
+	max = ft_strlen_int(map[0]);
 	while (map[++i])
 	{
-		if (max < ft_strlen(map[i]))
-			max = ft_strlen(map[i]);
+		if (max < ft_strlen_int(map[i]))
+			max = ft_strlen_int(map[i]);
 	}
 	return (max);
 }
 
 void	draw_minimap(t_win *win)
 {
-	int		i;
-	int		map_len = have_newlines(win->map);
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-    int		x;
-    int		y;
-	int		j;
-	char	*dst;
-	int		side = 12;
-	void	*img = mlx_new_image(win->mlx, max_len(win->map) * side, map_len * side);
-	char	*addr = mlx_get_data_addr(img, &bits_per_pixel, &line_length, &endian);
-	i = -1;
-	while (++i < map_len * side)
+	int	i;
+	int	j;
+	int	map_len;
+
+	i = 0;
+	map_len = have_newlines(win->map);
+	while (i < map_len && i <= HEIGHT_WIN / win->wall_mini.h)
 	{
-		j = -1;
-		while (++j < ft_strlen(win->map[i / side]) * side)
+		j = 0;
+		while (j < ft_strlen_int(win->map[i])
+			&& j <= WIDTH_WIN / win->wall_mini.w)
 		{
-			int color = 123 << 16 | 0 << 8 | 255;
-			if (win->map[i / side][j / side] == '0')
-				color = 255 << 24 | 23 << 16 | 0 << 8 | 9;
-			else if (win->map[i / side][j / side] == ' ')
-				color = 255 << 24 | 0;
-			else if (i / side == win->player.map_position_y && j / side == win->player.map_position_x)
-				color = 255 << 16 | 255 << 8 | 9;
-			dst = addr + (i * line_length
-					+ j * (bits_per_pixel / 8));
-			*(unsigned int *)(dst) = color;
+			if (win->map[i][j] == '1')
+				mlx_put_image_to_window(win->mlx, win->win, win->wall_mini.img,
+					j * win->wall_mini.w, i * win->wall_mini.h);
+			else if (win->map[i][j] == 'd')
+				mlx_put_image_to_window(win->mlx, win->win, win->door_mini.img,
+					j * win->door_mini.w, i * win->door_mini.h);
+			j++;
 		}
+		i++;
 	}
-	mlx_put_image_to_window(win->mlx, win->win, img, 20, 20);
 }

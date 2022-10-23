@@ -14,23 +14,8 @@
 
 void	ft_set_player(t_win *win, char dir, int x, int y)
 {
-	win->player.position_x = y + 0.5;
-	win->player.position_y = x + 0.5;
-	if (dir == 'N')
-	{
-		win->player.direction_x = 0.0;
-		win->player.direction_y = -1.0;
-		win->ray.plane_x = 0.70;
-		win->ray.plane_y = 0.0;
-	}
-	else if (dir == 'S')
-	{
-		win->player.direction_x = 0.0;
-		win->player.direction_y = 1.0;
-		win->ray.plane_x = -0.70;
-		win->ray.plane_y = 0.0;
-	}
-	else if (dir == 'W')
+	set_position(win, x, y, dir);
+	if (dir == 'W')
 	{
 		win->player.direction_x = -1.0;
 		win->player.direction_y = 0.0;

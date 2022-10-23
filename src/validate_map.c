@@ -33,7 +33,6 @@ int	check_characters(t_win *win, char **map, int len)
 				player++;
 				ft_set_player(win, map[i][j], i, j);
 				map[i][j] = '0';
-
 			}
 			if (!valid(map[i][j], 0))
 				return (0);
