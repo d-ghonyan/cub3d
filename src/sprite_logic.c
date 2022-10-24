@@ -67,7 +67,6 @@ void	ft_draw_wall_s(t_win *win)
 	int		color;
 	int		i;
 
-	hello = win;
 	i = 0;
 	win->wall.row = 0;
 	if (win->wall.distance < 1)

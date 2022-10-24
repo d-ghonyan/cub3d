@@ -85,12 +85,7 @@ int	middle(char *s, char *s1, char *s2)
 	while (s[i])
 	{
 		while (s[i] && (s[i] == ' ' || s[i] == '\t' || s[i] == '\n'))
-		{
-			if (s[i] == '\t')
-				i += 4;
-			else
-				i++;
-		}
+			i++;
 		while (s[i] && s[i] != ' ' && s[i] != '\t' && s[i] != '\n')
 		{
 			if (s[i] == '0' && ((ft_strlen_map(s1) < i || ft_strlen_map(s2) < i
@@ -98,7 +93,7 @@ int	middle(char *s, char *s1, char *s2)
 						|| !valid(s1[i], 1) || !valid(s2[i], 1)
 						|| !valid(s1[i - 1], 1) || !valid(s2[i - 1], 1)
 						|| !valid(s1[i + 1], 1) || !valid(s2[i + 1], 1))))
-				return (0);
+						return (0);
 			i++;
 		}
 	}

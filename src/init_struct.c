@@ -72,6 +72,7 @@ void	ft_init_img(t_win *win)
 
 static void	mlx_hooks(t_win *win)
 {
+	win->sprite_counter = 0;
 	win->flag_mouse = 0;
 	win->past_mouse_pos_x = 0;
 	win->flag_map = 0;

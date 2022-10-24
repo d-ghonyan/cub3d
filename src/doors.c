@@ -34,6 +34,32 @@ void	ft_enter_doors(t_win *win)
 	}
 }
 
+void	ft_add_sprites(t_win *win)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < ft_spllen(win->map))
+	{
+		j = 0;
+		while (win->map[i][j])
+		{
+			if (win->map[i][j] == '0'
+					&& i < have_newlines(win->map) - 1 && i > 0
+					&& j < ft_strlen(win->map[i + 1])
+					&& j < ft_strlen(win->map[i - 1])
+					&& win->map[i + 1][j] == '0'
+					&& win->map[i - 1][j] == '0'
+					&& win->map[i][j + 1] == '0'
+					&& win->map[i][j - 1] == '0')
+				win->map[i][j] = SPRITE;
+			++j;
+		}
+		++i;
+	}
+}
+
 void	ft_open_close_door(t_win *win)
 {
 	int	x;

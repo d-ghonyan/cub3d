@@ -161,6 +161,7 @@ typedef struct s_window
 	int			past_mouse_pos_x;
 	int			flag_map;
 	t_sprite	sprite;
+	int			sprite_counter;
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -219,5 +220,6 @@ int		*ft_render(t_win *win);
 void	draw_minimap(t_win *win);
 int		have_newlines(char **map);
 void	set_position(t_win *win, int x, int y, char dir);
+void	ft_add_sprites(t_win *win);
 
 #endif

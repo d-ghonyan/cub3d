@@ -35,8 +35,7 @@ void	set_position(t_win *win, int x, int y, char dir)
 int	valid(char c, int check_surrounded)
 {
 	if (check_surrounded)
-		return (c == '1' || c == 'N' || c == 'W'
-			|| c == 'E' || c == 'S' || c == '0' || c == 'c');
+		return (c == '1' || c == '0');
 	return (c == '\n' || c == '1' || c == '0' || c == 'N'
 		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' \
 		|| c == '\t' || c == 'c');

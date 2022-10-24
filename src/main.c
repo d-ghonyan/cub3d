@@ -18,6 +18,7 @@ static void	init_win(t_win *win, int argc, char **argv)
 	ft_init_mlx(win);
 	parse_map(argc, argv, win);
 	ft_enter_doors(win);
+	ft_add_sprites(win);
 	store_xpm(&win->door, win->mlx, "xpm/door.xpm");
 	store_xpm(&win->sprt1, win->mlx, "xpm/sprite1.xpm");
 	store_xpm(&win->sprt2, win->mlx, "xpm/sprite2.xpm");
