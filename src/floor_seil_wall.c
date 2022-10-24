@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/22 16:41:06 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 18:06:40 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	ft_calc_row_wall(t_win *win)
 
 	if (win->ray.dda.direction_dda)
 		column = win->player.position_x + win->wall.distance * \
-        win->ray.direction_x;
+		win->ray.direction_x;
 	else
 		column = win->player.position_y + win->wall.distance * \
-        win->ray.direction_y;
+		win->ray.direction_y;
 	column -= floor(column);
 	win->wall.column = (int)(column * 64);
 }
@@ -99,10 +99,8 @@ void	ft_draw_wall(t_win *win)
 	double	interpolation;
 	int		color;
 	int		i;
-	int		r;
 
 	i = 0;
-	r = 0;
 	win->wall.row = 0;
 	if (win->wall.distance < 1)
 		win->wall.row = (64.0 - 64.0 * win->wall.distance) / 2;
@@ -112,7 +110,7 @@ void	ft_draw_wall(t_win *win)
 		color = ft_find_pixel(win, win->wall.row, \
 			(int)win->wall.column);
 		ft_put_pixel(win, win->ray.number, \
-			win->wall.start_pixel + i - r, color);
+			win->wall.start_pixel + i, color);
 		win->wall.row += interpolation;
 		++i;
 	}

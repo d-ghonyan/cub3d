@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/22 15:16:11 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 17:28:48 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static void	init_win(t_win *win, int argc, char **argv)
 	parse_map(argc, argv, win);
 	ft_enter_doors(win);// enter 'd' in the map
 	store_xpm(&win->door, win->mlx, "xpm/door.xpm");
-	store_xpm(&win->sprt, win->mlx, "xpm/sprite.xpm");
+	store_xpm(&win->sprt1, win->mlx, "xpm/sprite1.xpm");
+	store_xpm(&win->sprt2, win->mlx, "xpm/sprite2.xpm");
+	store_xpm(&win->sprt3, win->mlx, "xpm/sprite3.xpm");
 }
 
 int	main(int argc, char **argv)

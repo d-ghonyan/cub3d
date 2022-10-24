@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/24 15:39:01 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:36:06 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void	ft_calc_dda_dir(t_win *win)
 			win->sprite.direction_dda = win->ray.dda.direction_dda;
 			win->sprite.map_position_x = win->player.map_position_x;
 			win->sprite.map_position_y = win->player.map_position_y;
+			win->sprite.shift_x = win->ray.dda.shift_x;
+			win->sprite.shift_y = win->ray.dda.shift_y;
 			win->sprite.is_sprite = 1;
 		}
 		if (cell == '1' || cell == CLOSE_DOOR)
@@ -102,6 +104,8 @@ int	*ft_render(t_win *win)
 		ft_calc_dist_height_wall(win);
 		ft_calc_row_wall(win);
 		ft_draw_wall(win);
+		win->wall.column = 0;
+		win->wall.row = 0;
 		if (win->sprite.is_sprite)
 		{
 			ft_calc_dist_height_wall_s(win);

@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/24 15:39:01 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:35:56 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 #  define HEIGHT_WIN 1000
 #  define M_KEY 46
 #  define N_KEY 45
-#  define SPACE_KEY 48
+#  define SPACE_KEY 49
 
 #  define CLOSE_DOOR 'd'
 #  define OPEN_DOOR 'D'
@@ -117,11 +117,12 @@ typedef struct s_wall
 typedef struct s_sprite
 {
 	int		is_sprite;
-	int		switch_sprite;
 	int		map_position_x;
 	int		map_position_y;
-
 	int		direction_dda;
+	double	shift_x;
+	double	shift_y;
+	int		switcher;
 }	t_sprite;
 
 typedef struct s_window
@@ -131,7 +132,9 @@ typedef struct s_window
 	t_img		we;
 	t_img		so;
 	t_img		door;
-	t_img		sprt;
+	t_img		sprt1;
+	t_img		sprt2;
+	t_img		sprt3;
 	int			f_color;
 	int			c_color;
 	char		**map;
@@ -191,6 +194,10 @@ void	drow_floor_and_ceil(t_win *win);
 void	ft_calc_dist_height_wall(t_win *win);
 void	ft_calc_row_wall(t_win *win);
 void	ft_draw_wall(t_win *win);
+
+void	ft_calc_dist_height_wall_s(t_win *win);
+void	ft_calc_row_wall_s(t_win *win);
+void	ft_draw_wall_s(t_win *win);
 
 /*manage_keys.c*/
 void	move_up_down(t_win *win, int keycode);
