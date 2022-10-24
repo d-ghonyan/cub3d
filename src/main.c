@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:04:03 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/22 08:41:35 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 17:28:48 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ static void	init_win(t_win *win, int argc, char **argv)
 	ft_init_mlx(win);
 	parse_map(argc, argv, win);
 	ft_enter_doors(win);
+	store_xpm(&win->door, win->mlx, "xpm/door.xpm");
+	store_xpm(&win->sprt1, win->mlx, "xpm/sprite1.xpm");
+	store_xpm(&win->sprt2, win->mlx, "xpm/sprite2.xpm");
+	store_xpm(&win->sprt3, win->mlx, "xpm/sprite3.xpm");
 }
 
 int	main(int argc, char **argv)

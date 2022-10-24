@@ -29,7 +29,7 @@ ifeq ($(UNAME_S), Linux)
 #-Werror
 	LINKLIB = -L libft/ -lft -lm -L../mlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
-	CFLAGS = -I./include -g -ggdb -fsanitize=address
+	CFLAGS = -I./include -g -ggdb3 -fsanitize=address
 #-Werror -Wall -Wextra
 	LINKLIB = -L libft/ -lft -framework OpenGL -framework AppKit -lm -lmlx
 endif

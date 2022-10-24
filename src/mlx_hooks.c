@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:01:40 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/22 08:21:11 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:18:44 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@ int	key_hook(int keycode, t_win *win)
 	if (keycode == ESC)
 		destroy_hook(win);
 	else if (keycode == UP || keycode == DOWN)
+	{
+		++win->sprite.switcher;
 		move_up_down(win, keycode);
+	}
 	else if (keycode == LEFT || keycode == RIGHT)
+	{
+		++win->sprite.switcher;
 		move_left_right(win, keycode);
+	}
 	else if (keycode == ROTATE_LEFT)
 		rotate_left(win);
 	else if (keycode == ROTATE_RIGHT)

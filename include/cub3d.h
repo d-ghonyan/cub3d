@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/21 16:13:33 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:35:56 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 #  define N_KEY 108
 #  define SPACE_KEY 32
 
+#  define CLOSE_DOOR 'd'
+#  define OPEN_DOOR 'D'
+
 # else
 #  include <mlx.h>
 
@@ -43,12 +46,16 @@
 #  define HEIGHT_WIN 1000
 #  define M_KEY 46
 #  define N_KEY 45
-#  define SPACE_KEY 48
+#  define SPACE_KEY 49
+
+#  define CLOSE_DOOR 'd'
+#  define OPEN_DOOR 'D'
 
 # endif
 
 # define CLOSE_DOOR 'd'
 # define OPEN_DOOR 'D'
+# define SPRITE 'c'
 
 # define PLAYER "minimap/player.xpm"
 # define WALL "minimap/wall.xpm"
@@ -113,6 +120,16 @@ typedef struct s_wall
 	double	distance;
 }	t_wall;
 
+typedef struct s_sprite
+{
+	int		count;
+	int		is_sprite;
+	int		direction_dda;
+	double	shift_x;
+	double	shift_y;
+	int		switcher;
+}	t_sprite;
+
 typedef struct s_window
 {
 	t_img		no;
@@ -124,6 +141,9 @@ typedef struct s_window
 	t_img		sprite_mini;
 	t_img		door_mini;
 	t_img		door;
+	t_img		sprt1;
+	t_img		sprt2;
+	t_img		sprt3;
 	int			f_color;
 	int			c_color;
 	char		**map;
@@ -140,6 +160,7 @@ typedef struct s_window
 	int			flag_mouse;
 	int			past_mouse_pos_x;
 	int			flag_map;
+	t_sprite	sprite;
 }	t_win;
 
 /* my pixel_put, from 42docs */
@@ -182,6 +203,10 @@ void	drow_floor_and_ceil(t_win *win);
 void	ft_calc_dist_height_wall(t_win *win);
 void	ft_calc_row_wall(t_win *win);
 void	ft_draw_wall(t_win *win);
+
+void	ft_calc_dist_height_wall_s(t_win *win);
+void	ft_calc_row_wall_s(t_win *win);
+void	ft_draw_wall_s(t_win *win);
 
 /*manage_keys.c*/
 void	move_up_down(t_win *win, int keycode);
