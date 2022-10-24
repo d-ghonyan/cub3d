@@ -35,14 +35,14 @@ void	store_xpm(t_img *img, void *mlx, char *name)
 	if (!img->img || img->w != 64 || img->h != 64)
 	{
 		close(img->fd);
-		file_error(name);
+		error("File size not supported, only 64x64", 0);
 	}
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 			&(img->line_length), &(img->endian));
 	if (!img->addr)
 	{
 		close(img->fd);
-		file_error(name);
+		error(name, 0);
 	}
 }
 

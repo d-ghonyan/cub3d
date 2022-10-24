@@ -93,7 +93,7 @@ int	middle(char *s, char *s1, char *s2)
 						|| !valid(s1[i], 1) || !valid(s2[i], 1)
 						|| !valid(s1[i - 1], 1) || !valid(s2[i - 1], 1)
 						|| !valid(s1[i + 1], 1) || !valid(s2[i + 1], 1))))
-						return (0);
+				return (0);
 			i++;
 		}
 	}

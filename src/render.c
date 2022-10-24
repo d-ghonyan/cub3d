@@ -56,24 +56,29 @@ static void	ft_calc_ray_data(t_win *win)
 	ft_calc_shift_step(win);
 }
 
+void	dda_norm(t_win *win)
+{
+	if (win->ray.dda.shift_x < win->ray.dda.shift_y)
+	{
+		win->ray.dda.shift_x += win->ray.dda.cell_distance_x;
+		win->player.map_position_x += win->ray.dda.step_x;
+		win->ray.dda.direction_dda = 0;
+	}
+	else
+	{
+		win->ray.dda.shift_y += win->ray.dda.cell_distance_y;
+		win->player.map_position_y += win->ray.dda.step_y;
+		win->ray.dda.direction_dda = 1;
+	}
+}
+
 static void	ft_calc_dda_dir(t_win *win)
 {
 	char	cell;
 
 	while (1)
 	{
-		if (win->ray.dda.shift_x < win->ray.dda.shift_y)
-		{
-			win->ray.dda.shift_x += win->ray.dda.cell_distance_x;
-			win->player.map_position_x += win->ray.dda.step_x;
-			win->ray.dda.direction_dda = 0;
-		}
-		else
-		{
-			win->ray.dda.shift_y += win->ray.dda.cell_distance_y;
-			win->player.map_position_y += win->ray.dda.step_y;
-			win->ray.dda.direction_dda = 1;
-		}
+		dda_norm(win);
 		cell = win->map[win->player.map_position_y][win->player.map_position_x];
 		if (cell == SPRITE && win->sprite.count == 0)
 		{
