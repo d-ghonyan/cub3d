@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 16:53:27 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/22 10:04:33 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/22 15:21:47 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_enter_doors(t_win *win)
 		}
 		++i;
 	}
-	store_xpm(&win->door, win->mlx, "xpm/door.xpm");
 }
 
 void	ft_open_close_door(t_win *win)

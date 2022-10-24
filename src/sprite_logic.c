@@ -1,48 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor_seil_wall.c                                  :+:      :+:    :+:   */
+/*   sprite_logic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 18:29:21 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/22 16:41:06 by mtiesha          ###   ########.fr       */
+/*   Created: 2022/10/22 16:41:24 by mtiesha           #+#    #+#             */
+/*   Updated: 2022/10/22 17:17:19 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	drow_floor_and_ceil(t_win *win)
+void	ft_calc_dist_height_wall_s(t_win *win)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < HEIGHT_WIN / 2)
-	{
-		j = 0;
-		while (j < WIDTH_WIN)
-		{
-			ft_put_pixel(win, j, i, win->c_color);
-			++j;
-		}
-		++i;
-	}
-	while (i < HEIGHT_WIN)
-	{
-		j = 0;
-		while (j < WIDTH_WIN)
-		{
-			ft_put_pixel(win, j, i, win->f_color);
-			++j;
-		}
-		++i;
-	}
-}
-
-void	ft_calc_dist_height_wall(t_win *win)
-{
-	if (win->ray.dda.direction_dda)
+	if (win->sprite.direction_dda)
 		win->wall.distance = win->ray.dda.shift_y \
 			- win->ray.dda.cell_distance_y;
 	else
@@ -54,7 +26,7 @@ void	ft_calc_dist_height_wall(t_win *win)
 		win->wall.start_pixel = 0;
 }
 
-void	ft_calc_row_wall(t_win *win)
+void	ft_calc_row_wall_s(t_win *win)
 {
 	double	column;
 
@@ -68,49 +40,24 @@ void	ft_calc_row_wall(t_win *win)
 	win->wall.column = (int)(column * 64);
 }
 
-static int	ft_find_pixel(t_win *win, int x, int y)
-{
-	int	*wall;
-
-	if (win->ray.door == 0)
-	{
-		if (win->ray.dda.direction_dda)
-		{
-			if (win->ray.direction_y >= 0)
-				wall = (int *)win->so.addr;
-			else
-				wall = (int *)win->no.addr;
-		}
-		else
-		{
-			if (win->ray.direction_x >= 0)
-				wall = (int *)win->ea.addr;
-			else
-				wall = (int *)win->we.addr;
-		}
-	}
-	else
-		wall = (int *)win->door.addr;
-	return (wall[64 * x + y]);
-}
-
-void	ft_draw_wall(t_win *win)
+void	ft_draw_wall_s(t_win *win)
 {
 	double	interpolation;
 	int		color;
 	int		i;
 	int		r;
+	int		*wall;
 
 	i = 0;
 	r = 0;
+	wall = (int *)win->sprt.addr;
 	win->wall.row = 0;
 	if (win->wall.distance < 1)
 		win->wall.row = (64.0 - 64.0 * win->wall.distance) / 2;
 	interpolation = (double)64 / (double)win->wall.height;
 	while (i < win->wall.height && i < HEIGHT_WIN)
 	{
-		color = ft_find_pixel(win, win->wall.row, \
-			(int)win->wall.column);
+		color = wall[win->wall.row, (int)win->wall.column];
 		ft_put_pixel(win, win->ray.number, \
 			win->wall.start_pixel + i - r, color);
 		win->wall.row += interpolation;

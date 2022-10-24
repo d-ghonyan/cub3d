@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:47:29 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/21 16:07:35 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:39:01 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,10 @@ static void	ft_calc_shift_step(t_win *win)
 
 static void	ft_calc_ray_data(t_win *win)
 {
-	double	field_point;// -1 to 1 field_point
+	double	field_point;
 
 	win->player.map_position_x = (int)win->player.position_x;
 	win->player.map_position_y = (int)win->player.position_y;
-	// ft_putendl_fd("-------map_pos-------", 2);
-	// ft_putendl_fd("map_pos_x: ", 2);
-	// ft_putnbr_fd(win->player.map_position_x, 2);
-	// ft_putendl_fd("map_pos_y: ", 2);
-	// ft_putnbr_fd(win->player.map_position_y, 2);
-	// ft_putendl_fd("", 2);
 	field_point = 2.0 * win->ray.number / WIDTH_WIN - 1.0;
 	win->ray.direction_x = win->player.direction_x + \
 		win->ray.plane_x * field_point;
@@ -64,6 +58,8 @@ static void	ft_calc_ray_data(t_win *win)
 
 static void	ft_calc_dda_dir(t_win *win)
 {
+	char	cell;
+
 	while (1)
 	{
 		if (win->ray.dda.shift_x < win->ray.dda.shift_y)
@@ -78,13 +74,17 @@ static void	ft_calc_dda_dir(t_win *win)
 			win->player.map_position_y += win->ray.dda.step_y;
 			win->ray.dda.direction_dda = 1;
 		}
-		if (win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == '1' \
-			|| win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == CLOSE_DOOR)
+		cell = win->map[win->player.map_position_y][win->player.map_position_x];
+		if (cell == SPRITE)
 		{
-			if (win->map[win->player.map_position_y] \
-			[win->player.map_position_x] == CLOSE_DOOR)
+			win->sprite.direction_dda = win->ray.dda.direction_dda;
+			win->sprite.map_position_x = win->player.map_position_x;
+			win->sprite.map_position_y = win->player.map_position_y;
+			win->sprite.is_sprite = 1;
+		}
+		if (cell == '1' || cell == CLOSE_DOOR)
+		{
+			if (cell == CLOSE_DOOR)
 				win->ray.door = 1;
 			break ;
 		}
@@ -102,6 +102,13 @@ int	*ft_render(t_win *win)
 		ft_calc_dist_height_wall(win);
 		ft_calc_row_wall(win);
 		ft_draw_wall(win);
+		if (win->sprite.is_sprite)
+		{
+			ft_calc_dist_height_wall_s(win);
+			ft_calc_row_wall_s(win);
+			ft_draw_wall_s(win);
+			win->sprite.is_sprite = 0;
+		}
 		++win->ray.number;
 	}
 	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);

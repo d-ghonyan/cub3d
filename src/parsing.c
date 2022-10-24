@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtiesha < mtiesha@student.21-school.ru>    +#+  +:+       +#+        */
+/*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:18:56 by dghonyan          #+#    #+#             */
-/*   Updated: 2022/10/15 10:29:38 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/22 14:07:51 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	valid(char c, int check_surrounded)
 {
 	if (check_surrounded)
 		return (c == '1' || c == 'N' || c == 'W'
-			|| c == 'E' || c == 'S' || c == '0');
+			|| c == 'E' || c == 'S' || c == '0' || c == 'c');
 	return (c == '\n' || c == '1' || c == '0' || c == 'N'
-		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' || c == '\t');
+		|| c == 'W' || c == 'E' || c == 'S' || c == ' ' \
+		|| c == '\t' || c == 'c');
 }
 
 void	parse_map(int argc, char **argv, t_win *win)

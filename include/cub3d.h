@@ -6,7 +6,7 @@
 /*   By: mtiesha <mtiesha@student.42yerevan.am>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 12:06:24 by mtiesha           #+#    #+#             */
-/*   Updated: 2022/10/21 16:13:33 by mtiesha          ###   ########.fr       */
+/*   Updated: 2022/10/24 15:39:01 by mtiesha          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 
 #  define CLOSE_DOOR 'd'
 #  define OPEN_DOOR 'D'
+#  define SPRITE 'c'
 
 # else
 #  include <mlx.h>
@@ -50,6 +51,7 @@
 
 #  define CLOSE_DOOR 'd'
 #  define OPEN_DOOR 'D'
+#  define SPRITE 'c'
 
 # endif
 
@@ -105,12 +107,22 @@ typedef struct s_ray
 
 typedef struct s_wall
 {
-	double	row;//x
-	double	column;//y
+	double	row;
+	double	column;
 	int		height;
 	int		start_pixel;
 	double	distance;
 }	t_wall;
+
+typedef struct s_sprite
+{
+	int		is_sprite;
+	int		switch_sprite;
+	int		map_position_x;
+	int		map_position_y;
+
+	int		direction_dda;
+}	t_sprite;
 
 typedef struct s_window
 {
@@ -119,6 +131,7 @@ typedef struct s_window
 	t_img		we;
 	t_img		so;
 	t_img		door;
+	t_img		sprt;
 	int			f_color;
 	int			c_color;
 	char		**map;
@@ -135,6 +148,7 @@ typedef struct s_window
 	int			flag_mouse;// if 1 - mouse_rotate is active [N button]
 	int			past_mouse_pos_x;// past mouse position, for rotate on x coordinate
 	int			flag_map;// if 1 - map is active [M button]
+	t_sprite	sprite;
 }	t_win;
 
 /* my pixel_put, from 42docs */
