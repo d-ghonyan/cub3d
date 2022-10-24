@@ -12,6 +12,14 @@
 
 #include "cub3d.h"
 
+t_win *hello;
+
+void	hell(int signum)
+{
+	printf("%f %f %d\n", hello->wall.column, hello->wall.row, 64 * (int)hello->wall.row + (int)hello->wall.column);
+	exit(1);
+}
+
 void	ft_calc_dist_height_wall_s(t_win *win)
 {
 	if (win->sprite.direction_dda)
@@ -30,6 +38,7 @@ void	ft_calc_row_wall_s(t_win *win)
 {
 	double	column;
 
+	// printf("%f %f\n", win->player.position_x, win->player.position_y);
 	if (win->sprite.direction_dda)
 		column = win->player.position_x + win->wall.distance * \
         win->ray.direction_x;
@@ -44,14 +53,20 @@ static int	ft_get_color_s(t_win *win)
 {
 	int	*wall;
 
-	if (win->sprite.switcher == 13)
+	if (win->sprite.switcher >= 13)
 		win->sprite.switcher = 0;
 	if (win->sprite.switcher >= 0 && win->sprite.switcher <= 4)
+	{
 		wall = (int *)win->sprt1.addr;
+	}
 	else if (win->sprite.switcher > 4 && win->sprite.switcher <= 9)
+	{
 		wall = (int *)win->sprt2.addr;
+	}
 	else if (win->sprite.switcher >= 10 && win->sprite.switcher <= 12)
+	{
 		wall = (int *)win->sprt3.addr;
+	}
 	return (wall[64 * (int)win->wall.row + (int)win->wall.column]);
 }	
 
@@ -61,6 +76,7 @@ void	ft_draw_wall_s(t_win *win)
 	int		color;
 	int		i;
 
+	hello = win;
 	i = 0;
 	win->wall.row = 0;
 	if (win->wall.distance < 1)

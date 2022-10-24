@@ -116,9 +116,8 @@ typedef struct s_wall
 
 typedef struct s_sprite
 {
+	int		count;
 	int		is_sprite;
-	int		map_position_x;
-	int		map_position_y;
 	int		direction_dda;
 	double	shift_x;
 	double	shift_y;

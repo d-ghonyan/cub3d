@@ -2,5 +2,8 @@
 	"workbench.panel.defaultLocation": "right",
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
-	"workbench.colorTheme": "Default High Contrast"
+	"workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
+	"files.associations": {
+		"cub3d.h": "c"
+	}
 }
