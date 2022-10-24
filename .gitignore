@@ -1,4 +1,5 @@
 */*.o
 */*.a
+*/venv
 cub3d
 venv
